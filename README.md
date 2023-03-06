@@ -1,7 +1,9 @@
-# Your Project's Title...
-Your project's description...
+# WKND Franklin
+
+This repo is for demonstration purposes. The intent here is to leverage the power of [Franklin](https://hlx.live/) to build a copy of the [wknd.site](https://wknd.site) website.
 
 ## Environments
+
 - Preview: https://main--{repo}--{owner}.hlx.page/
 - Live: https://main--{repo}--{owner}.hlx.live/
 
