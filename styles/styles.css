@@ -10,46 +10,45 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
-  /* colors */
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
-  --background-color: #fff;
-  --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
-  --text-color: #000;
-
+:root {
   /* fonts */
-  --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
-  --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+  --heading-font-family: Asar, Georgia, Times New Roman, Times, serif;
+  --body-font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  --fixed-font-family: "Roboto Mono", menlo, consolas, "Liberation Mono",
+    monospace;
 
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 18px;
-  --body-font-size-xs: 16px;
+  /* colors */
+  --text-color: #202020;
+  --link-color: #0045ff;
+  --link-hover-color: #0045ff;
+  --background-color: #ffffff;
+  --overlay-background-color: #eeeeee;
+  --highlight-background-color: #cccccc;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 48px;
-  --heading-font-size-xl: 40px;
-  --heading-font-size-l: 32px;
-  --heading-font-size-m: 24px;
-  --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px;
+  /* brand */
+  --brand-color: #ffea00;
 
-  /* nav height */
-  --nav-height: 64px;
-
+  /* sizes */
+  --heading-font-size-xxl: 40px;
+  --heading-font-size-xl: 36px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 16px;
+  --heading-font-size-s: 14px;
+  --heading-font-size-xs: 10px;
+  --body-font-size-m: 18px;
+  --body-font-size-s: 16px;
+  --body-font-size-xs: 12px;
 }
 
 @media (min-width: 900px) {
   :root {
-    --heading-font-size-xxl: 60px;
-    --heading-font-size-xl: 48px;
-    --heading-font-size-l: 36px;
-    --heading-font-size-m: 30px;
-    --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;
+    --heading-font-size-xxl: 40px;
+    --heading-font-size-xl: 36px;
+    --heading-font-size-l: 24px;
+    --heading-font-size-m: 16px;
+    --heading-font-size-s: 14px;
+    --heading-font-size-xs: 10px;
   }
 }
 
@@ -57,7 +56,7 @@ body {
   font-size: var(--body-font-size-m);
   margin: 0;
   font-family: var(--body-font-family);
-  line-height: 1.6;
+  line-height: 1.8;
   color: var(--text-color);
   background-color: var(--background-color);
 }
@@ -66,24 +65,54 @@ header {
   height: var(--nav-height);
 }
 
-h1, h2, h3,
-h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #202020;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 400;
+  line-height: 1.5;
   margin-top: 1em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { font-size: var(--heading-font-size-xxl) }
-h2 { font-size: var(--heading-font-size-xl) }
-h3 { font-size: var(--heading-font-size-l) }
-h4 { font-size: var(--heading-font-size-m) }
-h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
+h4,
+h5,
+h6 {
+  font-family: var(--body-font-family);
+  font-weight: 600;
+  text-transform: uppercase;
+}
 
-p, dl, ol, ul, pre, blockquote {
+h1 {
+  font-size: var(--heading-font-size-xxl);
+}
+h2 {
+  font-size: var(--heading-font-size-xl);
+}
+h3 {
+  font-size: var(--heading-font-size-l);
+}
+h4 {
+  font-size: var(--heading-font-size-m);
+}
+h5 {
+  font-size: var(--heading-font-size-s);
+}
+h6 {
+  font-size: var(--heading-font-size-xs);
+}
+
+p,
+dl,
+ol,
+ul,
+pre,
+blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -95,13 +124,16 @@ hr {
   border-bottom: 1px solid var(--overlay-background-color);
 }
 
-code, pre, samp {
+code,
+pre,
+samp {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
 }
 
-code, samp {
-  padding: .125em;
+code,
+samp {
+  padding: 0.125em;
 }
 
 pre {
@@ -111,7 +143,7 @@ pre {
 main pre {
   background-color: var(--overlay-background-color);
   padding: 1em;
-  border-radius: .25em;
+  border-radius: 0.25em;
   overflow-x: auto;
   white-space: pre;
 }
@@ -127,7 +159,8 @@ a:hover {
 }
 
 /* buttons */
-a.button:any-link, button {
+a.button:any-link,
+button {
   font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
@@ -138,29 +171,29 @@ a.button:any-link, button {
   font-style: normal;
   font-weight: 600;
   cursor: pointer;
-  color: var(--background-color);
-  background-color: var(--link-color);
+  color: var(--text-color);
+  background-color: var(--brand-color);
   margin: 16px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-radius: 30px;
 }
 
-a.button:hover, a.button:focus, button:hover, button:focus  {
-  background-color: var(--link-hover-color);
-  cursor: pointer;
-}
-
-button:disabled, button:disabled:hover {
+button:disabled,
+button:disabled:hover {
   background-color: var(--overlay-background-color);
   cursor: unset;
 }
 
-a.button.secondary, button.secondary {
+a.button.secondary,
+button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
-  color: var(--text-color)
+  color: var(--text-color);
+}
+
+main {
+  margin-top: 4rem;
 }
 
 main input {
@@ -202,6 +235,7 @@ main img {
   max-width: 100%;
   width: auto;
   height: auto;
+  border-radius: 0.5rem;
 }
 
 .icon {
@@ -216,29 +250,63 @@ main img {
 }
 
 main .section {
-  padding: 64px 16px;
+  padding: 0 16px;
 }
 
 @media (min-width: 600px) {
   main .section {
-    padding: 64px 32px;
+    padding: 0 32px;
   }
 }
 
 @media (min-width: 900px) {
-  .section > div {
+  main {
     max-width: 1200px;
-    margin: auto;
+    margin: 4rem auto;
   }
 }
 
 /* progressive section appearance */
-main .section[data-section-status='loading'],
-main .section[data-section-status='initialized'] {
+main .section[data-section-status="loading"],
+main .section[data-section-status="initialized"] {
   display: none;
 }
 
 /* section metadata */
 main .section.highlight {
   background-color: var(--highlight-background-color);
+}
+
+hr.separator {
+  margin: 4rem 0;
+}
+
+/* Magazine article */
+.magazine main {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto 280px;
+  grid-template-areas:
+    "hero hero"
+    "breadcrumbs breadcrumbs"
+    "main side"
+    "author side";
+  column-gap: 4rem;
+}
+
+.magazine .section.hero-container {
+  grid-area: hero;
+}
+
+.magazine .section.breadcrumbs-container {
+  grid-area: breadcrumbs;
+}
+
+.magazine .section.author-container {
+  grid-area: author;
+}
+
+.magazine .section.download-container,
+.magazine .section.related-articles-container {
+  grid-area: side;
 }
