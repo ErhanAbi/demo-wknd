@@ -1,0 +1,33 @@
+.author {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+}
+.author-avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 9999px;
+  object-position: center;
+  object-fit: cover;
+}
+
+.social-share-group {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 2px;
+}
+
+a.social-share {
+  padding: 0.5rem;
+  min-width: 2rem;
+  border-radius: 4px;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  text-align: center;
+}
+a.social-share:hover {
+  text-decoration: none;
+}
