@@ -11,6 +11,7 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  getMetadata,
 } from "./lib-franklin.js";
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -21,8 +22,16 @@ window.hlx.RUM_GENERATION = "project-1"; // add your RUM generation information 
  * @param {Element} main
  */
 function buildHeroImage(main) {
-  const firstSectionPic = main.querySelector(":scope > div:first-child picture");
+  const firstSectionPic = main.querySelector(
+    ":scope > div:first-child picture"
+  );
   if (firstSectionPic === null) {
+    return;
+  }
+
+  // this means our picture is inside a block. So ignore
+  // it
+  if (firstSectionPic.closest("div[class]")) {
     return;
   }
 
@@ -32,12 +41,41 @@ function buildHeroImage(main) {
 }
 
 /**
+ * @param {Element} main
+ */
+function extractTabs(main) {
+  const template = getMetadata("template");
+  if (template === "adventure") {
+  }
+}
+
+/**
+ * move a block from its' section to a separate section
+ *
+ * @param {Element} main
+ * @param {string} className
+ */
+function extractBlockToSection(main, className) {
+  const block = main.querySelector(className);
+  const currentBlockSection = block.parentElement;
+  const newBlockSection = document.createElement("div");
+  newBlockSection.append(block);
+
+  main.insertBefore(newBlockSection, currentBlockSection.nextElementSibling);
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
+  const template = getMetadata("template");
   try {
     buildHeroImage(main);
+    if (template === "adventure") {
+      extractBlockToSection(main, '.tabs');
+      extractBlockToSection(main, '.info');
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error("Auto Blocking failed", error);

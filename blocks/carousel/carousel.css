@@ -1,0 +1,78 @@
+.carousel-wrapper.fullbleed-wrapper {
+  width: 100vw;
+  margin-left: calc(0px - var(--section-padding));
+  margin-right: calc(0px - var(--section-padding));
+}
+
+.carousel {
+  width: inherit;
+}
+
+.carousel img {
+  display: block;
+  width: 100%;
+  height: 400px;
+  object-position: center;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.carousel-item {
+  display: none;
+}
+.carousel-item.carousel-item--visible {
+  display: block;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 0.25rem;
+}
+
+.carousel-controls :where(.bullets, .nav-buttons) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-controls .nav-buttons {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.carousel-controls button.bullet-btn,
+.carousel-controls button.nav-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background-color: transparent;
+  font-size: 2.25rem;
+  width: auto;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+
+.carousel-controls button.bullet-btn {
+  width: 1rem;
+  color: var(--text-color);
+  opacity: 0.5;
+}
+.carousel-controls button.bullet-btn--active {
+  opacity: 1;
+}
+
+.carousel-controls button.nav-btn {
+  font-size: 2rem;
+}

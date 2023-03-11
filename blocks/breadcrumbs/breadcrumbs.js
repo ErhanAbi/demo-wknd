@@ -21,10 +21,6 @@ function generateBreadcrumbs(block) {
       );
     })
     .forEach((breadCrumbElement) => block.append(breadCrumbElement));
-
-  //   const section = document.createElement("div");
-  //   section.append(buildBlock("breadcrumbs", { elems: pathSegments }));
-  //   main.querySelector(":scope > div").insertAdjacentElement("afterend", section);
 }
 
 /**
@@ -34,6 +30,4 @@ function generateBreadcrumbs(block) {
  */
 export default function decorateBreadCrumbs(block) {
   generateBreadcrumbs(block);
-  //   const breadCrumbsContainer = block.querySelector(":scope > div > div");
-  //   breadCrumbsContainer.classList.add("breadcrumbs-list");
 }
