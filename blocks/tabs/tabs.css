@@ -1,0 +1,12 @@
+.tab {
+  padding: 0.875rem 1.5rem;
+  background-color: transparent;
+  font-size: 0.875rem;
+  color: var(--text-color);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.tab.tab--active {
+  background-color: var(--text-color);
+  color: #fff;
+}

@@ -25,3 +25,13 @@
   font-weight: 600;
   color: var(--text-color);
 }
+
+.fullbleed-section .breadcrumbs-wrapper {
+  padding: 0 16px;
+}
+
+@media (min-width: 600px) {
+  .fullbleed-section .breadcrumbs-wrapper {
+    padding: 0 32px;
+  }
+}

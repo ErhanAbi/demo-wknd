@@ -39,6 +39,14 @@
   --body-font-size-m: 18px;
   --body-font-size-s: 16px;
   --body-font-size-xs: 12px;
+
+  --section-padding: 16px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --section-padding: 32px;
+  }
 }
 
 @media (min-width: 900px) {
@@ -250,19 +258,17 @@ main img {
 }
 
 main .section {
-  padding: 0 16px;
-}
-
-@media (min-width: 600px) {
-  main .section {
-    padding: 0 32px;
-  }
+  padding: 0 var(--section-padding);
 }
 
 @media (min-width: 900px) {
   main {
-    max-width: 1200px;
     margin: 4rem auto;
+  }
+
+  .section > :where(div) {
+    max-width: 1200px;
+    margin: auto;
   }
 }
 
@@ -281,8 +287,14 @@ hr.separator {
   margin: 4rem 0;
 }
 
+/* Custom styles */
+.hidden {
+  display: none;
+}
+
 /* Magazine article */
 .magazine main {
+  max-width: 1200px;
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: auto 280px;
@@ -309,4 +321,43 @@ hr.separator {
 .magazine .section.download-container,
 .magazine .section.related-articles-container {
   grid-area: side;
+}
+
+/* Adventure article */
+
+.adventure .carousel-wrapper {
+  margin-top: 1rem;
+}
+
+.adventure main {
+  display: grid;
+  grid-template-rows: auto minmax(auto, 80px) auto;
+  grid-template-columns:
+    clamp(var(--section-padding), calc((100vw - 1200px) / 2), 100vw)
+    280px auto
+    clamp(var(--section-padding), calc((100vw - 1200px) / 2), 100vw);
+  grid-template-areas:
+    "carousel carousel carousel carousel"
+    "wl info tabs wr"
+    "wl info main wr";
+  row-gap: 1rem;
+}
+
+.adventure main .carousel-container {
+  grid-area: carousel;
+}
+
+.adventure main .info-container {
+  padding: 0;
+  grid-area: info;
+}
+
+.adventure main .tabs-container {
+  padding: 0;
+  grid-area: tabs;
+}
+
+.adventure main div.section[data-tab] {
+  padding: 0;
+  grid-area: main;
 }

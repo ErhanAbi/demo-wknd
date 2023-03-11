@@ -1,0 +1,35 @@
+.info {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: start;
+  gap: 1rem;
+}
+
+.info > div {
+  position: relative;
+  padding-left: 1.125rem;
+  height: 84px;
+  text-transform: uppercase;
+}
+.info > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #ebebeb;
+  border-radius: 9999px;
+}
+
+.info > div > div:first-of-type {
+  padding-top: 1em;
+  font-size: 0.8rem;
+  color: #696969;
+}
+
+.info > div > div:last-of-type {
+  font-size: 0.875rem;
+  font-weight: bold;
+}
