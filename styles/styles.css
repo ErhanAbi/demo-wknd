@@ -38,8 +38,10 @@
   --heading-font-size-xs: 10px;
   --body-font-size-m: 18px;
   --body-font-size-s: 16px;
-  --body-font-size-xs: 12px;
+  --body-font-size-xs: 14px;
+  --body-font-size-xxs: 12px;
 
+  --nav-height: 96px;
   --section-padding: 16px;
 }
 
@@ -57,7 +59,12 @@
     --heading-font-size-m: 16px;
     --heading-font-size-s: 14px;
     --heading-font-size-xs: 10px;
+    --nav-height: 180px;
   }
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -200,10 +207,6 @@ button.secondary {
   color: var(--text-color);
 }
 
-main {
-  margin-top: 4rem;
-}
-
 main input {
   font-size: 1.25rem;
   width: 100%;
@@ -263,7 +266,7 @@ main .section {
 
 @media (min-width: 900px) {
   main {
-    margin: 4rem auto;
+    margin: 0 auto;
   }
 
   .section > :where(div) {
@@ -292,18 +295,30 @@ hr.separator {
   display: none;
 }
 
+/* Magazine homepage */
+
+.magazine-homepage .featured-article-wrapper {
+  margin: 0 auto;
+}
+
 /* Magazine article */
 .magazine main {
   max-width: 1200px;
-  display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: auto 280px;
-  grid-template-areas:
-    "hero hero"
-    "breadcrumbs breadcrumbs"
-    "main side"
-    "author side";
-  column-gap: 4rem;
+}
+
+@media (min-width: 900px) {
+  .magazine main {
+    max-width: 1200px;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto 280px;
+    grid-template-areas:
+      "hero hero"
+      "breadcrumbs breadcrumbs"
+      "main side"
+      "author side";
+    column-gap: 4rem;
+  }
 }
 
 .magazine .section.hero-container {
@@ -323,19 +338,19 @@ hr.separator {
   grid-area: side;
 }
 
-/* Adventure article */
-
-.adventure .carousel-wrapper {
-  margin-top: 1rem;
+.magazine .featured-article-wrapper {
+  margin: 5rem auto;
 }
+
+/* Adventure article */
 
 .adventure main {
   display: grid;
   grid-template-rows: auto minmax(auto, 80px) auto;
   grid-template-columns:
-    clamp(var(--section-padding), calc((100vw - 1200px) / 2), 100vw)
+    clamp(0px, calc((100vw - 1200px) / 2), 100vw)
     280px auto
-    clamp(var(--section-padding), calc((100vw - 1200px) / 2), 100vw);
+    clamp(0px, calc((100vw - 1200px) / 2), 100vw);
   grid-template-areas:
     "carousel carousel carousel carousel"
     "wl info tabs wr"
@@ -346,18 +361,34 @@ hr.separator {
 .adventure main .carousel-container {
   grid-area: carousel;
 }
+.adventure main .carousel-container .carousel-wrapper {
+  margin-top: 1rem;
+}
+.adventure main .carousel-container > div:not(.fullbleed-wrapper) {
+  box-sizing: border-box;
+  max-width: calc(1200px - 2 * var(--section-padding));
+  margin: 0 auto;
+}
 
 .adventure main .info-container {
-  padding: 0;
   grid-area: info;
+  padding: 0 var(--section-padding);
 }
 
 .adventure main .tabs-container {
-  padding: 0;
   grid-area: tabs;
+  padding: 0 var(--section-padding);
 }
 
 .adventure main div.section[data-tab] {
-  padding: 0;
   grid-area: main;
+  padding: 0 var(--section-padding);
 }
+
+/* @media (max-width: 1200px) {
+  .adventure main .info-container,
+  .adventure main .tabs-container,
+  .adventure main div.section[data-tab] {
+    padding: 0;
+  }
+} */

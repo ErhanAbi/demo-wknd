@@ -1,0 +1,65 @@
+.featured-article {
+  border-radius: 0.5rem;
+  background-color: var(--overlay-background-color);
+  overflow: hidden;
+}
+
+.featured-article > div {
+  display: flex;
+  flex-flow: column-reverse nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.featured-article > div > div {
+  flex-basis: 65%;
+}
+
+.featured-article > div > div:first-of-type {
+  flex-basis: 35%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: start;
+  padding: 4rem 1rem 2rem 2rem;
+}
+.featured-article > div > div:first-of-type > * {
+  margin: 0;
+}
+.featured-article > div > div:first-of-type p:first-of-type {
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+}
+.featured-article > div > div:first-of-type a:any-link {
+  color: var(--text-color);
+  text-decoration: none;
+}
+.featured-article > div > div:first-of-type > :where(h1, h2, h3, h4, h5, h6) {
+  margin: 1.5rem 0;
+}
+.featured-article > div > div:first-of-type > p {
+  font-size: var(--body-font-size-xs);
+}
+
+.featured-article > div > div:first-of-type .button-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+.featured-article > div > div:first-of-type .button-container a {
+  margin: 0;
+}
+
+.featured-article > div > div:last-of-type img {
+  height: 100%;
+  border-radius: 0 0.5rem 0.5rem 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (min-width: 800px) {
+  .featured-article > div {
+    flex-flow: row nowrap;
+  }
+}

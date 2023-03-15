@@ -1,5 +1,6 @@
 .author {
   display: flex;
+  flex-wrap: wrap;
   justify-content: start;
   align-items: center;
   gap: 1rem;
@@ -11,13 +12,21 @@
   object-position: center;
   object-fit: cover;
 }
-
+.author-details {
+  font-size: 0.8rem;
+  color: #888;
+}
 .social-share-group {
   flex: 1;
   display: flex;
-  justify-content: end;
+  justify-content: start;
   align-items: center;
-  gap: 2px;
+  gap: 1rem 2px;
+}
+@media (min-width: 450px) {
+    .social-share-group {
+        justify-content: end;
+    }
 }
 
 a.social-share {

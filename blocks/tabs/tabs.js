@@ -1,3 +1,8 @@
+import {
+  decorateBlock,
+  loadBlocks,
+  updateSectionsStatus,
+} from "../../scripts/lib-franklin.js";
 import { stringToHTML } from "../../scripts/template.js";
 
 /**
@@ -43,11 +48,38 @@ function getTabs(tabs = []) {
   );
 }
 
+async function addAllSection() {
+  const allArticles = [
+    ...document.querySelectorAll(".article-list.block > div"),
+  ];
+  const markup = stringToHTML(
+    `<div class="section" data-tab="All">
+      <div>
+        <div class="article-list">
+          ${allArticles.map((article) => article.outerHTML).join("")}
+        </div>
+      <div>
+    </div>`
+  );
+  const main = document.querySelector("main");
+
+  main.insertBefore(markup, document.querySelector("div.section[data-tab]"));
+
+  decorateBlock(markup.querySelector(".article-list"));
+  await loadBlocks(markup);
+  updateSectionsStatus(main);
+}
+
 /**
  * @param {Element} block
  */
 export default async function decorate(block) {
+  const isAdventureTabs = block.classList.contains("adventures");
+  if (isAdventureTabs) {
+    addAllSection();
+  }
   const tabSections = [...document.querySelectorAll("div.section[data-tab]")];
+
   const tabs = tabSections.map((section) => section.dataset.tab);
   const markup = getTabs(tabs);
 

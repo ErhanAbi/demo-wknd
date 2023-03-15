@@ -46,8 +46,6 @@ export default async function decorate(block) {
     dateStyle: "medium",
   });
 
-  console.log(articlesMetadata);
-
   const markup = stringToHTML(
     `<div class="related-articles-list">
         ${articlesMetadata
