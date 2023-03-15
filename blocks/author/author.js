@@ -27,7 +27,7 @@ function addSocialShare(block) {
       `<div class="social-share-group">
             <a href="#fb" class="social-share" aria-label="facebook">fb</a>
             <a href="#twitter" class="social-share" aria-label="twitter">tw</a>
-            <a href="#insta" class="social-share" aria-label="instagram">in</a>
+            <a href="#insta" class="social-share" aria-label="instagram">insta</a>
         </div>`
     )
   );

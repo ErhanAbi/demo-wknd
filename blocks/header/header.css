@@ -1,39 +1,73 @@
-header and nav layout
-header .nav-wrapper {
-  background-color: var(--background-color);
-  width: 100%;
+/* header and nav layout */
+
+.stuck-ref {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 50px;
+  visibility: hidden;
+}
+
+header {
+  position: sticky;
+  top: 0;
   z-index: 2;
-  position: fixed;
+  box-sizing: border-box;
+  margin: 0;
+  margin-bottom: 2rem;
+  width: 100%;
+  pointer-events: none;
+}
+
+header.stuck .header {
+  --max-height: 32px;
+  max-height: calc(var(--max-height) + 2 * var(--padding-y));
+}
+@media (min-width: 900px) {
+  header.stuck .header {
+    --max-height: 64px;
+  }
+}
+
+header .header,
+header .header .nav-wrapper {
+  --padding-y: 1rem;
+  box-sizing: border-box;
+  padding: 1rem 0;
+  height: 100%;
+  background-color: var(--background-color);
+}
+
+header .header {
+  height: 100%;
+  max-height: var(--nav-height);
+  pointer-events: auto;
+  transition: max-height 100ms ease-in-out;
 }
 
 header nav {
   box-sizing: border-box;
   display: grid;
   grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / auto 1fr auto;
+    "hamburger brand tools" 100%
+    "sections sections sections" 1fr / auto 1fr auto;
   align-items: center;
   gap: 0 2em;
   margin: auto;
-  max-width: 1264px;
-  height: var(--nav-height);
-  padding: 0 1rem;
+  max-width: 1200px;
+  height: 100%;
+  padding: 0 var(--section-padding);
   font-family: var(--body-font-family);
+  background-color: var(--background-color);
 }
 
 header nav[aria-expanded="true"] {
   grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
+    "hamburger brand" var(--nav-height)
+    "sections sections" 1fr
+    "tools tools" var(--nav-height) / auto 1fr;
   overflow-y: auto;
   min-height: 100vh;
-}
-
-@media (min-width: 600px) {
-  header nav {
-    padding: 0 2rem;
-  }
 }
 
 @media (min-width: 900px) {
@@ -89,7 +123,7 @@ header nav .nav-hamburger-icon::after {
 
 header nav .nav-hamburger-icon::before,
 header nav .nav-hamburger-icon::after {
-  content: '';
+  content: "";
   position: absolute;
   background: currentcolor;
 }
@@ -148,8 +182,14 @@ header .nav-brand {
 }
 
 header nav .nav-brand img {
-  width: 128px;
+  width: 80px;
   height: auto;
+}
+@media (min-width: 900px) {
+  header nav .nav-brand img {
+    width: 128px;
+    height: auto;
+  }
 }
 
 /* sections */
@@ -167,7 +207,7 @@ header nav[aria-expanded="true"] .nav-sections {
   align-self: start;
 }
 
-header nav .nav-sections ul  {
+header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
   font-size: var(--body-font-size-s);
@@ -184,6 +224,25 @@ header nav .nav-sections ul > li > ul {
 
 header nav .nav-sections ul > li > ul > li {
   font-weight: 500;
+}
+
+header nav .nav-sections ul a {
+  font-size: 0.875rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.8rem;
+  background-color: #fff;
+  color: var(--text-color);
+  text-transform: uppercase;
+  gap: 0.5rem;
+}
+header nav .nav-sections ul a:hover {
+  background-color: var(--brand-color);
+  text-decoration: none;
+}
+header nav .nav-sections ul a:active {
+  background-color: var(--brand-color);
 }
 
 @media (min-width: 900px) {
@@ -204,10 +263,10 @@ header nav .nav-sections ul > li > ul > li {
   }
 
   header nav .nav-sections .nav-drop::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
-    top: .5em;
+    top: 0.5em;
     right: 2px;
     transform: rotate(135deg);
     width: 6px;
@@ -219,15 +278,15 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .nav-drop[aria-expanded="true"]::after {
     top: unset;
-    bottom: .5em;
+    bottom: 0.5em;
     transform: rotate(315deg);
   }
 
   header nav .nav-sections ul {
     display: flex;
-    gap: 2em;
+    justify-content: end;
     margin: 0;
-    font-size: var(--body-font-size-xs);
+    font-size: var(--body-font-size-xxs);
   }
 
   header nav .nav-sections > ul > li {
@@ -253,7 +312,7 @@ header nav .nav-sections ul > li > ul > li {
   }
 
   header nav .nav-sections > ul > li > ul::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -8px;
     left: 8px;

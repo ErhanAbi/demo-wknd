@@ -89,12 +89,16 @@ export default async function decorate(block) {
   }
 
   const carouselItems = [...block.querySelectorAll(":scope > div")];
-  carouselItems.map((item, idx) =>
+  carouselItems.forEach((item, idx) => {
+    const [picture, content] = item.querySelectorAll(":scope > div");
+
     item.classList.add(
       "carousel-item",
       idx === 0 ? "carousel-item--visible" : "carousel-item"
-    )
-  );
+    );
+    picture?.classList.add("carousel-pic");
+    content?.classList.add("carousel-content");
+  });
 
   if (carouselItems.length < 2) {
     return;
