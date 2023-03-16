@@ -18,29 +18,6 @@ const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = "project-1"; // add your RUM generation information here
 
 /**
- *
- * @param {Element} main
- */
-function buildHeroImage(main) {
-  const firstSectionPic = main.querySelector(
-    ":scope > div:first-child picture"
-  );
-  if (firstSectionPic === null) {
-    return;
-  }
-
-  // this means our picture is inside a block. So ignore
-  // it
-  if (firstSectionPic.closest("div[class]")) {
-    return;
-  }
-
-  const heroSection = document.createElement("div");
-  heroSection.append(buildBlock("hero", { elems: [firstSectionPic] }));
-  main.prepend(heroSection);
-}
-
-/**
  * move a block from its' section to a separate section
  *
  * @param {Element} main
@@ -62,7 +39,7 @@ function extractBlockToSection(main, className) {
 function buildAutoBlocks(main) {
   const template = getMetadata("template");
   try {
-    buildHeroImage(main);
+    // buildHeroImage(main);
     if (template === "adventure") {
       extractBlockToSection(main, ".tabs");
       extractBlockToSection(main, ".info");
