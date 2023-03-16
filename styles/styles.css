@@ -263,10 +263,14 @@ main img {
 .icon svg {
   height: 100%;
   width: 100%;
+  display: inline-block;
 }
 
 main .section {
   padding: 0 var(--section-padding);
+}
+.main .section > div {
+  content-visibility: auto;
 }
 
 @media (min-width: 900px) {
@@ -276,7 +280,7 @@ main .section {
 
   .section > :where(div) {
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
   }
 }
 
@@ -319,7 +323,6 @@ hr.separator {
     grid-template-columns: auto 280px;
     grid-template-areas:
       "hero hero"
-      "breadcrumbs breadcrumbs"
       "main side"
       "author side";
     column-gap: 4rem;
@@ -328,10 +331,6 @@ hr.separator {
 
 .magazine .section.hero-container {
   grid-area: hero;
-}
-
-.magazine .section.breadcrumbs-container {
-  grid-area: breadcrumbs;
 }
 
 .magazine .section.author-container {
@@ -348,7 +347,6 @@ hr.separator {
 }
 
 /* Adventure article */
-
 .adventure main {
   display: grid;
   grid-template-rows: auto minmax(auto, 80px) auto;
@@ -388,4 +386,23 @@ hr.separator {
 .adventure main div.section[data-tab] {
   grid-area: main;
   padding: 0 var(--section-padding);
+}
+
+/* FAQs */
+@media (min-width: 800px) {
+  .faqs main {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 4rem;
+  }
+
+  .faqs .section.accordion-container {
+    padding-right: 0;
+  }
+  .faqs .section.faqs-info {
+    padding-left: 0;
+    min-width: max-content;
+    margin-top: 1.2em;
+  }
 }

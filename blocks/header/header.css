@@ -22,6 +22,7 @@ header {
 header.stuck .header {
   --max-height: 32px;
   max-height: calc(var(--max-height) + 2 * var(--padding-y));
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.26);
 }
 @media (min-width: 900px) {
   header.stuck .header {
@@ -42,7 +43,7 @@ header .header {
   height: 100%;
   max-height: var(--nav-height);
   pointer-events: auto;
-  transition: max-height 100ms ease-in-out;
+  transition: max-height 100ms ease-in-out, box-shadow 50ms ease-in-out;
 }
 
 header nav {

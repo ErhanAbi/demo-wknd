@@ -1,0 +1,39 @@
+.accordion {
+  margin-top: 3rem;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+}
+.accordion-btn {
+  margin: 0;
+  border-bottom: 2px solid #ebebeb;
+  padding: 0.8rem 1rem;
+  width: 100%;
+  background: none;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-weight: 600;
+  font-size: var(--body-font-size-m);
+}
+.icon-remove {
+  display: none;
+}
+
+.accordion-row--open .icon-remove {
+  display: block;
+}
+.accordion-row--open .icon-add {
+  display: none;
+}
+
+.accordion-content {
+  margin-top: 1rem;
+  font-size: var(--body-font-size-s);
+  display: none;
+}
+.accordion-row--open .accordion-content {
+  display: block;
+}
