@@ -1,0 +1,55 @@
+.author-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem 1rem;
+}
+
+.author-list > div > div {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.author-list > div > div > h3 {
+  margin: 0;
+}
+
+.author-list > div > div img {
+  width: 164px;
+  height: 164px;
+  border-radius: 9999px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.author-list > div > div p {
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+}
+
+.social-share-group {
+  flex: 1;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem 2px;
+  margin-top: 0.5rem;
+}
+@media (min-width: 450px) {
+  .social-share-group {
+    justify-content: end;
+  }
+}
+
+a.social-share {
+  padding: 0.5rem;
+  min-width: 2rem;
+  border-radius: 4px;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  text-align: center;
+}
+a.social-share:hover {
+  text-decoration: none;
+}
