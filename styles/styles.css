@@ -12,9 +12,10 @@
 
 :root {
   /* fonts */
-  --heading-font-family: Asar, Georgia, Times New Roman, Times, serif;
-  --body-font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
+  --heading-font-family: Asar, Asar-fallback, Georgia, Times New Roman, Times,
+    serif;
+  --body-font-family: "Source Sans Pro", "Source Sans Pro-fallback",
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
   --fixed-font-family: "Roboto Mono", menlo, consolas, "Liberation Mono",
     monospace;
 
@@ -137,6 +138,10 @@ hr {
   margin-bottom: 1.5em;
   border: 0;
   border-bottom: 1px solid var(--overlay-background-color);
+}
+
+strong {
+  font-weight: 600;
 }
 
 code,
@@ -384,11 +389,3 @@ hr.separator {
   grid-area: main;
   padding: 0 var(--section-padding);
 }
-
-/* @media (max-width: 1200px) {
-  .adventure main .info-container,
-  .adventure main .tabs-container,
-  .adventure main div.section[data-tab] {
-    padding: 0;
-  }
-} */
