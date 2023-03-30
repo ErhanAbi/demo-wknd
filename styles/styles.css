@@ -304,8 +304,12 @@ hr.separator {
   display: none;
 }
 
-/* Magazine homepage */
+/* Homepage */
+.homepage .featured-article-wrapper {
+  margin: 2.5rem auto;
+}
 
+/* Magazine homepage */
 .magazine-homepage .featured-article-wrapper {
   margin: 0 auto;
 }

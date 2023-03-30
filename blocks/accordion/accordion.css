@@ -36,4 +36,5 @@
 }
 .accordion-row--open .accordion-content {
   display: block;
+  padding: 0 1rem;
 }

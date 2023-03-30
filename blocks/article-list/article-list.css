@@ -1,10 +1,11 @@
 .article-list {
   --columns: 1;
-  --gap: 1rem;
+  --row-gap: 1.5rem;
+  --col-gap: 1rem;
   display: flex;
   flex-flow: row wrap;
   align-items: stretch;
-  gap: 1rem;
+  gap: var(--row-gap) var(--col-gap);
 }
 .article-list.locked {
   opacity: 0.7;
@@ -15,7 +16,7 @@
 }
 
 .article-list > div {
-  flex-basis: calc((100% - (var(--columns) - 1) * var(--gap)) / var(--columns));
+  flex-basis: calc((100% - (var(--columns) - 1) * var(--col-gap)) / var(--columns));
 }
 .article-list > div * {
   margin: 0;
@@ -30,13 +31,14 @@
   display: inline-flex;
   justify-content: start;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 .article-list .button-container .button {
   display: inline-block;
   padding: 0;
   margin: 0;
   background-color: transparent;
+  text-transform: uppercase;
   text-align: initial;
   white-space: initial;
   text-overflow: initial;
