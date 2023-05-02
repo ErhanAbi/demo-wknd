@@ -3,7 +3,14 @@ import { stringToHTML } from "../../scripts/template.js";
 /**
  * @param {HTMLAnchorElement[]} links
  */
-async function getArticlesMetadata(links) {
+async function getArticlesMetadata(rawLinks) {
+  console.log(rawLinks);
+
+  const links = rawLinks.map((link) => ({
+    title: link.title || link.textContent,
+    href: `${document.location.origin}/${new URL(link.href).pathname}`,
+  }));
+
   const dates = (
     await Promise.all(
       links.map((link) =>
@@ -34,13 +41,33 @@ async function getArticlesMetadata(links) {
   }));
 }
 
+async function fetchRelatedArticles(relatedArticlesSource) {
+  const resp = await fetch(relatedArticlesSource);
+  if (!resp.ok) {
+    console.log("response failed", resp);
+    throw new Error("Failed to fetch related articles");
+  }
+
+  const responseData = await resp.json();
+
+  return responseData.data;
+}
+
 /**
  *
  * @param {Element} block
  */
 export default async function decorate(block) {
   const container = block.querySelector(":scope > div > div");
-  const articleLinks = [...block.querySelectorAll("a")];
+  const linkToRelatedArticles = container.querySelector("a");
+  const articles = await fetchRelatedArticles(linkToRelatedArticles.href);
+  const articleLinks = articles.map((article) =>
+    stringToHTML(
+      `<a href="${article.url}" title="${article.title}">${article.title}</a>`
+    )
+  );
+
+  // const articleLinks = [...block.querySelectorAll("a")];
   const articlesMetadata = await getArticlesMetadata(articleLinks);
   const intl = new Intl.DateTimeFormat("en-US", {
     dateStyle: "medium",

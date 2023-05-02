@@ -350,6 +350,14 @@ hr.separator {
   margin: 5rem auto;
 }
 
+.magazine :where(h2, h3)::after {
+  content: "";
+  display: block;
+  width: 7rem;
+  height: 2px;
+  background-color: var(--brand-color);
+}
+
 /* Adventure article */
 .adventure main {
   display: grid;
