@@ -13,6 +13,7 @@ import {
   loadCSS,
   getMetadata,
   createResponsivePicture,
+  createOptimizedPicture,
 } from "./lib-franklin.js";
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -22,11 +23,17 @@ window.hlx.RUM_GENERATION = "project-1"; // add your RUM generation information 
  * Create optimized pictures in document
  * @param {Element} main
  */
-function createOptimizedPictures(main) {
+function createResponsivePictures(main) {
   const firstBlock = main.querySelector('.block');
   main
     .querySelectorAll('img')
-    .forEach((img, index) => img.closest('picture').replaceWith(createResponsivePicture(img.src, img.alt, false)));
+    .forEach((img, index) =>
+      img
+        .closest('picture')
+        .replaceWith(
+          createResponsivePicture({ src: img.src, alt: img.alt, eager: false, width: img.width, height: img.height }),
+        ),
+    );
   firstBlock.querySelector('img').setAttribute('loading', 'eager');
 }
 
@@ -75,7 +82,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
-  createOptimizedPictures(main);
+  createResponsivePictures(main);
 }
 
 /**

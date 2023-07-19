@@ -437,17 +437,21 @@ export async function loadBlocks(main) {
  * @param {string} src The image URL
  * @param {string} [alt] The image alternative text
  * @param {boolean} [eager] Set loading attribute to eager
- * * @param {Array} [srcset] List of sources
+ * @param {number} [width] Natural images' width
+ * @param {number} [height] Natural images' height
+ * @param {Array} [srcset] List of sources
  * @param {Array} [sizes] Breakpoints and corresponding params (eg. width)
  * @returns {Element} The picture element
  */
-export function createResponsivePicture(
+export function createResponsivePicture({
   src,
   alt = '',
   eager = false,
+  width,
+  height,
   sizes = [{ media: '(min-width: 100px)', width: '100vw' }],
   srcset = ['300', '600', '900', '1200', '1800', '2000', '2400', '3000'],
-) {
+}) {
   const url = new URL(src, window.location.href);
   const picture = document.createElement('picture');
   const { pathname } = url;
@@ -457,6 +461,8 @@ export function createResponsivePicture(
   img.setAttribute('loading', eager ? 'eager' : 'lazy');
   img.setAttribute('alt', alt);
   img.setAttribute('src', `${pathname}?format=${ext}&optimize=medium`);
+  if (width) img.width = width;
+  if (height) img.height = height;
 
   if (Array.isArray(sizes)) {
     img.setAttribute(
