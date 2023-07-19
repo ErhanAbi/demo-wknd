@@ -1,3 +1,4 @@
+import { createOptimizedPicture } from "../../scripts/lib-franklin.js";
 import { stringToHTML } from "../../scripts/template.js";
 
 /**
@@ -87,6 +88,20 @@ export default async function decorate(block) {
   if (block.classList.contains("fullbleed")) {
     wrapper.classList.add("fullbleed-wrapper");
   }
+
+  block
+    .querySelectorAll("img")
+    .forEach((img) =>
+      img
+        .closest("picture")
+        .replaceWith(
+          createOptimizedPicture(img.src, img.alt, false, [
+            { media: "(min-width: 900px)", width: "2560" },
+            { media: "(min-width: 450px)", width: "2000" },
+            { width: "1440" },
+          ])
+        )
+    );
 
   const carouselItems = [...block.querySelectorAll(":scope > div")];
   carouselItems.forEach((item, idx) => {
