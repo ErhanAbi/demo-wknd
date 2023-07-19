@@ -19,24 +19,31 @@ import {
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = "project-1"; // add your RUM generation information here
 
+const OMIT_RESPONSIVE_IMAGE_BLOCKS = ['carousel'];
 /**
  * Create optimized pictures in document
  * @param {Element} main
  */
 function createResponsivePictures(main) {
-  const firstBlock = main.querySelector('.block');
-  main
-    .querySelectorAll('img')
-    .forEach((img, index) =>
-      img
-        .closest('picture')
-        .replaceWith(
-          createResponsivePicture({ src: img.src, alt: img.alt, eager: false, width: img.width, height: img.height }),
-        ),
-    );
-  firstBlock.querySelector('img').setAttribute('loading', 'eager');
-}
+  const blocks = [...main.querySelectorAll('.block')].filter(block =>
+    OMIT_RESPONSIVE_IMAGE_BLOCKS.reduce((acc, currentClass) => acc && !block.classList.contains(currentClass), true),
+  );
+  const firstBlock = blocks[0];
 
+  blocks.forEach(block =>
+    block
+      .querySelectorAll('img')
+      .forEach(img =>
+        img
+          .closest('picture')
+          .replaceWith(
+            createResponsivePicture({ src: img.src, alt: img.alt, eager: false, width: img.width, height: img.height }),
+          ),
+      ),
+  );
+
+  firstBlock?.querySelector('img')?.setAttribute('loading', 'eager');
+}
 /**
  * move a block from its' section to a separate section
  *
