@@ -20,13 +20,14 @@ window.hlx.RUM_GENERATION = "project-1"; // add your RUM generation information 
 
 /**
  * Create optimized pictures in document
+ * @param {Element} main
  */
 function createOptimizedPictures(main) {
+  const firstBlock = main.querySelector('.block');
   main
     .querySelectorAll('img')
-    .forEach((img, index) =>
-      img.closest('picture').replaceWith(createResponsivePicture(img.src, img.alt, index === 0)),
-    );
+    .forEach((img, index) => img.closest('picture').replaceWith(createResponsivePicture(img.src, img.alt, false)));
+  firstBlock.querySelector('img').setAttribute('loading', 'eager');
 }
 
 /**
@@ -72,9 +73,9 @@ export function decorateMain(main) {
   decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
-  createOptimizedPictures(main);
   decorateSections(main);
   decorateBlocks(main);
+  createOptimizedPictures(main);
 }
 
 /**
