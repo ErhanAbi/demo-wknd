@@ -431,6 +431,77 @@ export async function loadBlocks(main) {
   }
 }
 
+
+/**
+ * Returns a picture element with webp and fallbacks
+ * @param {string} src The image URL
+ * @param {string} [alt] The image alternative text
+ * @param {boolean} [eager] Set loading attribute to eager
+ * * @param {Array} [srcset] List of sources
+ * @param {Array} [sizes] Breakpoints and corresponding params (eg. width)
+ * @returns {Element} The picture element
+ */
+export function createResponsivePicture(
+  src,
+  alt = '',
+  eager = false,
+  sizes = [{ media: '(min-width: 100px)', width: '100vw' }],
+  srcset = ['300', '600', '900', '1200', '1800', '2000', '2400', '3000'],
+) {
+  const url = new URL(src, window.location.href);
+  const picture = document.createElement('picture');
+  const { pathname } = url;
+  const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
+
+  const img = document.createElement('img');
+  img.setAttribute('loading', eager ? 'eager' : 'lazy');
+  img.setAttribute('alt', alt);
+  img.setAttribute('src', `${pathname}?format=${ext}&optimize=medium`);
+
+  if (Array.isArray(sizes)) {
+    img.setAttribute(
+      'sizes',
+      sizes.reduce((acc, size) => {
+        const imgSize = size.media ? `${size.media} ${size.width}` : size.width.toString();
+        return acc ? `${acc}, ${imgSize}` : imgSize;
+      }, ''),
+    );
+  }
+
+  const webpSource = document.createElement('source');
+  const fallbackSource = document.createElement('source');
+  webpSource.setAttribute('type', 'image/webp');
+  if (Array.isArray(srcset)) {
+    webpSource.setAttribute(
+      'srcset',
+      srcset.reduce((acc, crt) => {
+        const currentSource = `${pathname}?width=${crt}&format=webply&optimize=medium ${crt}w`;
+        if (acc === '') {
+          return currentSource;
+        }
+        return `${acc}, ${currentSource}`;
+      }, ''),
+    );
+
+    fallbackSource.setAttribute(
+      'srcset',
+      srcset.reduce((acc, crt) => {
+        const currentSource = `${pathname}?width=${crt}&format=${ext}&optimize=medium ${crt}w`;
+        if (acc === '') {
+          return currentSource;
+        }
+        return `${acc}, ${currentSource}`;
+      }, ''),
+    );
+  }
+
+  picture.appendChild(webpSource);
+  picture.appendChild(fallbackSource);
+  picture.appendChild(img);
+
+  return picture;
+}
+
 /**
  * Returns a picture element with webp and fallbacks
  * @param {string} src The image URL

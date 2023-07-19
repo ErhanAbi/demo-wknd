@@ -12,10 +12,22 @@ import {
   loadBlocks,
   loadCSS,
   getMetadata,
+  createResponsivePicture,
 } from "./lib-franklin.js";
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = "project-1"; // add your RUM generation information here
+
+/**
+ * Create optimized pictures in document
+ */
+function createOptimizedPictures(main) {
+  main
+    .querySelectorAll('img')
+    .forEach((img, index) =>
+      img.closest('picture').replaceWith(createResponsivePicture(img.src, img.alt, index === 0)),
+    );
+}
 
 /**
  * move a block from its' section to a separate section
@@ -60,6 +72,7 @@ export function decorateMain(main) {
   decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
+  createOptimizedPictures(main);
   decorateSections(main);
   decorateBlocks(main);
 }

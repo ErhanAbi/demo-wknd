@@ -1,5 +1,4 @@
-import { createOptimizedPicture } from "../../scripts/lib-franklin.js";
-import { stringToHTML } from "../../scripts/template.js";
+import { stringToHTML } from '../../scripts/template.js';
 
 /**
  *
@@ -7,24 +6,22 @@ import { stringToHTML } from "../../scripts/template.js";
  * @param {string} index
  */
 function showCarouselImage(block, index) {
-  const items = [...block.querySelectorAll(".carousel-item")];
-  const visibleItemIdx = items.findIndex((item) =>
-    item.classList.contains("carousel-item--visible")
-  );
-  const show = (idx) => {
-    const bullets = [...block.querySelectorAll("button.bullet-btn")];
-    items.forEach((item) => item.classList.remove("carousel-item--visible"));
-    bullets.forEach((button) => button.classList.remove("bullet-btn--active"));
-    items[idx].classList.add("carousel-item--visible");
-    bullets[idx].classList.add("bullet-btn--active");
+  const items = [...block.querySelectorAll('.carousel-item')];
+  const visibleItemIdx = items.findIndex(item => item.classList.contains('carousel-item--visible'));
+  const show = idx => {
+    const bullets = [...block.querySelectorAll('button.bullet-btn')];
+    items.forEach(item => item.classList.remove('carousel-item--visible'));
+    bullets.forEach(button => button.classList.remove('bullet-btn--active'));
+    items[idx].classList.add('carousel-item--visible');
+    bullets[idx].classList.add('bullet-btn--active');
   };
 
   let itemIdxToShow = 0;
   switch (index) {
-    case "next":
+    case 'next':
       itemIdxToShow = (visibleItemIdx + 1) % items.length;
       break;
-    case "prev":
+    case 'prev':
       itemIdxToShow = (visibleItemIdx + items.length - 1) % items.length;
       break;
     default:
@@ -41,7 +38,7 @@ function initCarouselEvents(block) {
    *
    * @param {Event} evt
    */
-  const onButtonClick = (evt) => {
+  const onButtonClick = evt => {
     const { target: button } = evt;
     if (!button.dataset.nav) {
       return;
@@ -49,7 +46,7 @@ function initCarouselEvents(block) {
     showCarouselImage(block, button.dataset.nav);
   };
 
-  block.addEventListener("click", onButtonClick);
+  block.addEventListener('click', onButtonClick);
 }
 
 /**
@@ -64,15 +61,15 @@ function createCarouselControls(count) {
               .map((_, idx) =>
                 idx === 0
                   ? `<button class="bullet-btn bullet-btn--active" data-nav="${idx}">•</button>`
-                  : `<button class="bullet-btn" data-nav="${idx}">•</button>`
+                  : `<button class="bullet-btn" data-nav="${idx}">•</button>`,
               )
-              .join("")}
+              .join('')}
         </div>
         <div class="nav-buttons">
             <button class="nav-btn" data-nav="prev">←</button>
             <button class="nav-btn" data-nav="next">→</button>
         </div>
-    </div>`
+    </div>`,
   );
 
   return markup;
@@ -83,36 +80,19 @@ function createCarouselControls(count) {
  */
 export default async function decorate(block) {
   const wrapper = block.parentElement;
-  const section = block.closest("div.section");
+  const section = block.closest('div.section');
 
-  if (block.classList.contains("fullbleed")) {
-    wrapper.classList.add("fullbleed-wrapper");
+  if (block.classList.contains('fullbleed')) {
+    wrapper.classList.add('fullbleed-wrapper');
   }
 
-  block
-    .querySelectorAll("img")
-    .forEach((img) =>
-      img
-        .closest("picture")
-        .replaceWith(
-          createOptimizedPicture(img.src, img.alt, false, [
-            { media: "(min-width: 900px)", width: "2560" },
-            { media: "(min-width: 450px)", width: "2000" },
-            { width: "1440" },
-          ])
-        )
-    );
-
-  const carouselItems = [...block.querySelectorAll(":scope > div")];
+  const carouselItems = [...block.querySelectorAll(':scope > div')];
   carouselItems.forEach((item, idx) => {
-    const [picture, content] = item.querySelectorAll(":scope > div");
+    const [picture, content] = item.querySelectorAll(':scope > div');
 
-    item.classList.add(
-      "carousel-item",
-      idx === 0 ? "carousel-item--visible" : "carousel-item"
-    );
-    picture?.classList.add("carousel-pic");
-    content?.classList.add("carousel-content");
+    item.classList.add('carousel-item', idx === 0 ? 'carousel-item--visible' : 'carousel-item');
+    picture?.classList.add('carousel-pic');
+    content?.classList.add('carousel-content');
   });
 
   if (carouselItems.length < 2) {
