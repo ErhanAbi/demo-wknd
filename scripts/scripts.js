@@ -19,7 +19,7 @@ import {
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = "project-1"; // add your RUM generation information here
 
-const OMIT_RESPONSIVE_IMAGE_BLOCKS = ['carousel'];
+const OMIT_RESPONSIVE_IMAGE_BLOCKS = [];
 /**
  * Create optimized pictures in document
  * @param {Element} main
