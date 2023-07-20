@@ -128,7 +128,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
-  createResponsivePictures(main);
+  // createResponsivePictures(main);
 }
 
 /**
