@@ -14,10 +14,10 @@ import {
   getMetadata,
   createResponsivePicture,
   createOptimizedPicture,
-} from "./lib-franklin.js";
+} from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
-window.hlx.RUM_GENERATION = "project-1"; // add your RUM generation information here
+window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 const OMIT_RESPONSIVE_IMAGE_BLOCKS = [];
 /**
@@ -41,9 +41,8 @@ function createResponsivePictures(main) {
           ),
       ),
   );
-
-  firstBlock?.querySelector('img')?.setAttribute('loading', 'eager');
 }
+
 /**
  * move a block from its' section to a separate section
  *
@@ -53,7 +52,7 @@ function createResponsivePictures(main) {
 function extractBlockToSection(main, className) {
   const block = main.querySelector(className);
   const currentBlockSection = block.parentElement;
-  const newBlockSection = document.createElement("div");
+  const newBlockSection = document.createElement('div');
   newBlockSection.append(block);
 
   main.insertBefore(newBlockSection, currentBlockSection.nextElementSibling);
@@ -64,16 +63,16 @@ function extractBlockToSection(main, className) {
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
-  const template = getMetadata("template");
+  const template = getMetadata('template');
   try {
     // buildHeroImage(main);
-    if (template === "adventure") {
-      extractBlockToSection(main, ".tabs");
-      extractBlockToSection(main, ".info");
+    if (template === 'adventure') {
+      extractBlockToSection(main, '.tabs');
+      extractBlockToSection(main, '.info');
     }
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error("Auto Blocking failed", error);
+    console.error('Auto Blocking failed', error);
   }
 }
 
@@ -97,9 +96,9 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  document.documentElement.lang = "en";
+  document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
-  const main = doc.querySelector("main");
+  const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
     await waitForLCP(LCP_BLOCKS);
@@ -111,20 +110,20 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
-  const main = doc.querySelector("main");
+  const main = doc.querySelector('main');
   await loadBlocks(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector("header"));
-  loadFooter(doc.querySelector("footer"));
+  loadHeader(doc.querySelector('header'));
+  loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  sampleRUM("lazy");
-  sampleRUM.observe(main.querySelectorAll("div[data-block-name]"));
-  sampleRUM.observe(main.querySelectorAll("picture > img"));
+  sampleRUM('lazy');
+  sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
+  sampleRUM.observe(main.querySelectorAll('picture > img'));
 }
 
 /**
@@ -133,7 +132,7 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import("./delayed.js"), 1000);
+  window.setTimeout(() => import('./delayed.js'), 1000);
   // load anything that can be postponed to the latest here
 }
 

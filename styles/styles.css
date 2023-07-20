@@ -285,6 +285,9 @@ main .section {
 }
 
 /* progressive section appearance */
+:where(main > div:not(.section)) {
+  display: none;
+}
 main .section[data-section-status="loading"],
 main .section[data-section-status="initialized"] {
   display: none;
