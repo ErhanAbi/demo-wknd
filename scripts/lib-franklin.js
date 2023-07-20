@@ -460,7 +460,7 @@ export function createResponsivePicture({
   const img = document.createElement('img');
   img.loading = eager ? 'eager' : 'lazy';
   img.alt = alt;
-  img.src = `${pathname}?format=${ext}&optimize=medium`;
+  img.src = `${pathname}?format=${ext}&optimize=high`;
   if (width) img.width = width;
   if (height) img.height = height;
 
@@ -476,7 +476,7 @@ export function createResponsivePicture({
   webpSource.type = 'image/webp';
   if (Array.isArray(srcset)) {
     webpSource.srcset = srcset.reduce((acc, crt) => {
-      const currentSource = `${pathname}?width=${crt}&format=webp&optimize=medium ${crt}w`;
+      const currentSource = `${pathname}?width=${crt}&format=webp&optimize=high ${crt}w`;
       if (acc === '') {
         return currentSource;
       }
@@ -484,7 +484,7 @@ export function createResponsivePicture({
     }, '');
 
     fallbackSource.srcset = srcset.reduce((acc, crt) => {
-      const currentSource = `${pathname}?width=${crt}&format=${ext}&optimize=medium ${crt}w`;
+      const currentSource = `${pathname}?width=${crt}&format=${ext}&optimize=high ${crt}w`;
       if (acc === '') {
         return currentSource;
       }
@@ -492,7 +492,7 @@ export function createResponsivePicture({
     }, '');
   }
 
-  webpSource.src = `${pathname}?format=webp&optimize=medium`;
+  webpSource.src = `${pathname}?format=webp&optimize=high`;
   fallbackSource.src = img.src;
   fallbackSource.type = `image/${ext}`;
 
