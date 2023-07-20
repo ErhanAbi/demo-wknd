@@ -458,48 +458,43 @@ export function createResponsivePicture({
   const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
 
   const img = document.createElement('img');
-  img.setAttribute('loading', eager ? 'eager' : 'lazy');
-  img.setAttribute('alt', alt);
-  img.setAttribute('src', `${pathname}?format=${ext}&optimize=medium`);
+  img.loading = eager ? 'eager' : 'lazy';
+  img.alt = alt;
+  img.src = `${pathname}?format=${ext}&optimize=medium`;
   if (width) img.width = width;
   if (height) img.height = height;
 
   if (Array.isArray(sizes)) {
-    img.setAttribute(
-      'sizes',
-      sizes.reduce((acc, size) => {
-        const imgSize = size.media ? `${size.media} ${size.width}` : size.width.toString();
-        return acc ? `${acc}, ${imgSize}` : imgSize;
-      }, ''),
-    );
+    img.sizes = sizes.reduce((acc, size) => {
+      const imgSize = size.media ? `${size.media} ${size.width}` : size.width.toString();
+      return acc ? `${acc}, ${imgSize}` : imgSize;
+    }, '');
   }
 
   const webpSource = document.createElement('source');
   const fallbackSource = document.createElement('source');
-  webpSource.setAttribute('type', 'image/webp');
+  webpSource.type = 'image/webp';
   if (Array.isArray(srcset)) {
-    webpSource.setAttribute(
-      'srcset',
-      srcset.reduce((acc, crt) => {
-        const currentSource = `${pathname}?width=${crt}&format=webply&optimize=medium ${crt}w`;
-        if (acc === '') {
-          return currentSource;
-        }
-        return `${acc}, ${currentSource}`;
-      }, ''),
-    );
+    webpSource.srcset = srcset.reduce((acc, crt) => {
+      const currentSource = `${pathname}?width=${crt}&format=webp&optimize=medium ${crt}w`;
+      if (acc === '') {
+        return currentSource;
+      }
+      return `${acc}, ${currentSource}`;
+    }, '');
 
-    fallbackSource.setAttribute(
-      'srcset',
-      srcset.reduce((acc, crt) => {
-        const currentSource = `${pathname}?width=${crt}&format=${ext}&optimize=medium ${crt}w`;
-        if (acc === '') {
-          return currentSource;
-        }
-        return `${acc}, ${currentSource}`;
-      }, ''),
-    );
+    fallbackSource.srcset = srcset.reduce((acc, crt) => {
+      const currentSource = `${pathname}?width=${crt}&format=${ext}&optimize=medium ${crt}w`;
+      if (acc === '') {
+        return currentSource;
+      }
+      return `${acc}, ${currentSource}`;
+    }, '');
   }
+
+  webpSource.src = `${pathname}?format=webp&optimize=medium`;
+  fallbackSource.src = img.src;
+  fallbackSource.type = `image/${ext}`;
 
   picture.appendChild(webpSource);
   picture.appendChild(fallbackSource);

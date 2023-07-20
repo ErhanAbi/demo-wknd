@@ -7,4 +7,3 @@ sampleRUM("cwv");
 
 // add more delayed functionality here
 // prerenderPages();
-console.log('delayed');

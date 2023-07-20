@@ -13,13 +13,43 @@ import {
   loadCSS,
   getMetadata,
   createResponsivePicture,
-  createOptimizedPicture,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 const OMIT_RESPONSIVE_IMAGE_BLOCKS = [];
+
+/**
+ * Get preload link for a picture
+ *
+ * @param {Element} picture
+ */
+function getPicturePreloadLink(picture) {
+  const sources = [...picture.querySelectorAll('source')];
+  const img = picture.querySelector('img');
+  const webpSources = new Set(['image/webp', 'image/webply']);
+  const links = sources
+    .filter(source => webpSources.has(source.type))
+    .map(source => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      if (source.type) {
+        link.type = source.type;
+      }
+      link.imageSrcset = source.srcset;
+      link.href = source.src;
+      if (img.sizes) {
+        link.imageSizes = img.sizes;
+      }
+
+      return link;
+    });
+
+  return links;
+}
+
 /**
  * Create optimized pictures in document
  * @param {Element} main
@@ -41,6 +71,12 @@ function createResponsivePictures(main) {
           ),
       ),
   );
+
+  const firstPic = firstBlock.querySelector('picture');
+  if (firstPic) {
+    const links = getPicturePreloadLink(firstPic);
+    links.forEach(link => document.head.appendChild(link));
+  }
 }
 
 /**
