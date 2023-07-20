@@ -285,8 +285,11 @@ main .section {
 }
 
 /* progressive section appearance */
-:where(main > div:not(.section)) {
-  display: none;
+:where(main picture) {
+  visibility: hidden;
+}
+main picture[data-status="ready"] {
+  visibility: initial;
 }
 main .section[data-section-status="loading"],
 main .section[data-section-status="initialized"] {

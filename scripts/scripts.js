@@ -78,6 +78,9 @@ function createResponsivePictures(main) {
     const links = getPicturePreloadLink(firstPic);
     links.forEach(link => document.head.appendChild(link));
   }
+  main.querySelectorAll('picture').forEach(picture => {
+    picture.dataset.status = 'ready';
+  });
 }
 
 /**
