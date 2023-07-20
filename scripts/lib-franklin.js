@@ -492,8 +492,8 @@ export function createResponsivePicture({
     }, '');
   }
 
-  webpSource.src = `${pathname}?format=webp&optimize=high`;
-  fallbackSource.src = img.src;
+  webpSource.dataset.src = `${pathname}?format=webp&optimize=high`;
+  fallbackSource.dataset.src = img.src;
   fallbackSource.type = `image/${ext}`;
 
   picture.appendChild(webpSource);

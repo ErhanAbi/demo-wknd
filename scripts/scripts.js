@@ -39,7 +39,7 @@ function getPicturePreloadLink(picture) {
         link.type = source.type;
       }
       link.imageSrcset = source.srcset;
-      link.href = source.src;
+      link.href = source.dataset.src;
       if (img.sizes) {
         link.imageSizes = img.sizes;
       }
