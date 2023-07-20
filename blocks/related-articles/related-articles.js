@@ -4,8 +4,6 @@ import { stringToHTML } from "../../scripts/template.js";
  * @param {HTMLAnchorElement[]} links
  */
 async function getArticlesMetadata(rawLinks) {
-  console.log(rawLinks);
-
   const links = rawLinks.map((link) => ({
     title: link.title || link.textContent,
     href: `${document.location.origin}/${new URL(link.href).pathname}`,
