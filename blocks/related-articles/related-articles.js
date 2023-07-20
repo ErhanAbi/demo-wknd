@@ -13,7 +13,7 @@ async function getArticlesMetadata(rawLinks) {
     await Promise.all(
       links.map((link) =>
         fetch(link.href, { method: "HEAD" }).catch((err) => {
-          console.error(err);
+          // console.error(err);
           return null;
         })
       )
@@ -42,7 +42,7 @@ async function getArticlesMetadata(rawLinks) {
 async function fetchRelatedArticles(relatedArticlesSource) {
   const resp = await fetch(relatedArticlesSource);
   if (!resp.ok) {
-    console.log("response failed", resp);
+    // console.log("response failed", resp);
     throw new Error("Failed to fetch related articles");
   }
 
