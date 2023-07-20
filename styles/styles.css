@@ -285,12 +285,12 @@ main .section {
 }
 
 /* progressive section appearance */
-/*:where(main picture) {
+:where(main picture) {
   visibility: hidden;
 }
 main picture[data-status="ready"] {
   visibility: initial;
-}*/
+}
 main .section[data-section-status="loading"],
 main .section[data-section-status="initialized"] {
   display: none;
