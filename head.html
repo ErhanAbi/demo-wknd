@@ -11,9 +11,22 @@
 <link rel="icon" sizes="192x192" href="/assets/images/icons/icon-192x192.png" />
 <link rel="icon" sizes="96x96" href="/assets/images/icons/icon-96x96.png" />
 <link rel="icon" sizes="32x32" href="/assets/images/icons/icon-32x32.png" />
-
+<link rel="stylesheet" href="/styles/styles.css" />
+<link href="/styles/fonts.css" rel="stylesheet" />
+<script type="module">
+  const blocks = [...document.querySelectorAll('main div[class]')].map(block => block.classList[0]);
+  blocks.forEach(block => {
+    const link = document.createElement('link');
+    link.href = `/blocks/${block}/${block}.css`;
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  });
+  blocks.forEach(block => {
+    const script = document.createElement('script');
+    script.src = `/blocks/${block}/${block}.js`;
+    script.type = 'module';
+    document.head.appendChild(script);
+  });
+</script>
 <script src="/scripts/lib-franklin.js" type="module"></script>
 <script src="/scripts/scripts.js" type="module"></script>
-<link rel="stylesheet" href="/styles/styles.css" />
-<link rel="icon" href="data:," />
-<link href="/styles/fonts.css" rel="stylesheet" />
