@@ -43,6 +43,7 @@
   --body-font-size-xxs: 12px;
 
   --nav-height: 96px;
+  --nav-margin: 1rem;
   --section-padding: 16px;
 }
 
@@ -79,6 +80,8 @@ body {
 
 header {
   height: var(--nav-height);
+  margin: 0;
+  margin-bottom: var(--nav-margin);
 }
 
 h1,
