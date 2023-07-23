@@ -80,6 +80,7 @@ function createResponsivePictures(main) {
   if (firstPic) {
     const links = getPicturePreloadLink(firstPic);
     links.forEach(link => document.head.appendChild(link));
+    firstPic.querySelector('img')?.loading = 'eager';
   }
   main.querySelectorAll('picture').forEach(picture => {
     picture.dataset.status = 'ready';
