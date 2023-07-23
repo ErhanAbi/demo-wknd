@@ -14,7 +14,10 @@ import {
   getMetadata,
   createResponsivePicture,
 } from './lib-franklin.js';
+
+const t1 = performance.now();
 import './template.js';
+console.log('tpl loaded', performance.now() - t1);
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
@@ -140,8 +143,11 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
+    console.log('decorating main', performance.now() - t1);
     decorateMain(main);
+    console.log('finish decorating main', performance.now() - t1);
     await waitForLCP(LCP_BLOCKS);
+    console.log('finish lcp', performance.now() - t1);
   }
 }
 
@@ -151,6 +157,7 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
+  console.log('loading blocks', performance.now() - t1);
   await loadBlocks(main);
 
   const { hash } = window.location;

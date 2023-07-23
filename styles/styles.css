@@ -291,9 +291,9 @@ main .section {
 main picture[data-status='ready'] {
   visibility: initial;
 }
-:where(main > div:not(.section)) {
+/*:where(main > div:not(.section)) {
   display: none;
-}
+}*/
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
   display: none;
