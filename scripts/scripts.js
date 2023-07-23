@@ -159,7 +159,7 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   console.log('loading blocks', performance.now() - t1);
   await loadBlocks(main);
-
+  console.log('blocks loaded', performance.now() - t1);
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
@@ -185,7 +185,9 @@ function loadDelayed() {
 
 async function loadPage() {
   await loadEager(document);
+  console.log('eager loaded', performance.now() - t1);
   await loadLazy(document);
+  console.log('lazy loaded', performance.now() - t1);
   loadDelayed();
 }
 
