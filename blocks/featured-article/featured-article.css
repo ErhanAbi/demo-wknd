@@ -16,12 +16,12 @@
 }
 
 .featured-article > div > div:first-of-type {
+  padding: 2rem 1rem;
   flex-basis: 35%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: start;
-  padding: 4rem 1rem 2rem 2rem;
 }
 .featured-article > div > div:first-of-type > * {
   margin: 0;
@@ -53,6 +53,9 @@
 
 .featured-article > div > div:last-of-type img {
   height: 100%;
+  min-height: 280px;
+  max-height: 350px;
+  width: 100%;
   border-radius: 0 0.5rem 0.5rem 0;
   object-fit: cover;
   object-position: center;
@@ -61,5 +64,15 @@
 @media (min-width: 800px) {
   .featured-article > div {
     flex-flow: row nowrap;
+  }
+
+  .featured-article > div > div:first-of-type {
+    padding: 4rem 1rem 2rem 2rem;
+  }
+
+  .featured-article > div > div:last-of-type img {
+    height: 100%;
+    max-height: initial;
+    width: auto;
   }
 }
