@@ -12,12 +12,9 @@
 
 :root {
   /* fonts */
-  --heading-font-family: Asar, Asar-fallback, Georgia, Times New Roman, Times,
-    serif;
-  --body-font-family: "Source Sans Pro", "Source Sans Pro-fallback",
-    "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --fixed-font-family: "Roboto Mono", menlo, consolas, "Liberation Mono",
-    monospace;
+  --heading-font-family: Asar, Asar-fallback, Georgia, Times New Roman, Times, serif;
+  --body-font-family: 'Source Sans Pro', 'Source Sans Pro-fallback', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* colors */
   --text-color: #202020;
@@ -241,12 +238,12 @@ main blockquote {
 }
 
 main blockquote p::before {
-  content: "“";
+  content: '“';
   line-height: 0;
 }
 
 main blockquote p::after {
-  content: "”";
+  content: '”';
   line-height: 0;
 }
 
@@ -291,11 +288,14 @@ main .section {
 :where(main picture) {
   visibility: hidden;
 }
-main picture[data-status="ready"] {
+main picture[data-status='ready'] {
   visibility: initial;
 }
-main .section[data-section-status="loading"],
-main .section[data-section-status="initialized"] {
+:where(main > div:not(.section)) {
+  display: none;
+}
+main .section[data-section-status='loading'],
+main .section[data-section-status='initialized'] {
   display: none;
 }
 
@@ -335,9 +335,9 @@ hr.separator {
     grid-template-rows: auto;
     grid-template-columns: auto 280px;
     grid-template-areas:
-      "hero hero"
-      "main side"
-      "author side";
+      'hero hero'
+      'main side'
+      'author side';
     column-gap: 4rem;
   }
 }
@@ -360,7 +360,7 @@ hr.separator {
 }
 
 .magazine :where(h2, h3)::after {
-  content: "";
+  content: '';
   display: block;
   width: 7rem;
   height: 2px;
@@ -376,9 +376,9 @@ hr.separator {
     280px auto
     clamp(0px, calc((100vw - 1200px) / 2), 100vw);
   grid-template-areas:
-    "carousel carousel carousel carousel"
-    "wl info tabs wr"
-    "wl info main wr";
+    'carousel carousel carousel carousel'
+    'wl info tabs wr'
+    'wl info main wr';
   row-gap: 1rem;
 }
 
