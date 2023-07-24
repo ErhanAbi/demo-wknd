@@ -7,7 +7,8 @@ async function getArticlesMetadata(rawLinks) {
   const links = rawLinks
     .filter(link => Boolean(link?.href))
     .map(link => {
-      let href = `${document.location.origin}/${new URL(link.href).pathname}`;
+      let href = `${document.location.origin}${new URL(link.href).pathname}`;
+
       if (href.includes('//')) {
         href = href.replaceAll('//', '/');
       }
