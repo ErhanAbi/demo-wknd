@@ -5,6 +5,7 @@
   align-items: center;
   gap: 1rem;
 }
+
 .author-avatar img {
   width: 60px;
   height: 60px;
@@ -12,10 +13,12 @@
   object-position: center;
   object-fit: cover;
 }
+
 .author-details {
   font-size: 0.8rem;
   color: #555;
 }
+
 .social-share-group {
   flex: 1;
   display: flex;
@@ -23,10 +26,11 @@
   align-items: center;
   gap: 1rem 2px;
 }
+
 @media (min-width: 450px) {
-    .social-share-group {
-        justify-content: end;
-    }
+  .social-share-group {
+    justify-content: end;
+  }
 }
 
 a.social-share {
@@ -37,6 +41,7 @@ a.social-share {
   color: var(--background-color);
   text-align: center;
 }
+
 a.social-share:hover {
   text-decoration: none;
 }

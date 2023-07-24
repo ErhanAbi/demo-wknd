@@ -6,7 +6,9 @@ import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 function decorateCopy(block) {
   const copyBlock = block.querySelector('.copy');
   const [startYear, copyText] = [...copyBlock.querySelectorAll(':scope > div > div')];
-  startYear.textContent = `© ${startYear.textContent}-${new Date().getFullYear()}, ${copyText.textContent}`;
+  startYear.textContent = `© ${startYear.textContent}-${new Date().getFullYear()}, ${
+    copyText.textContent
+  }`;
   copyText.remove();
 }
 
