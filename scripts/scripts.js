@@ -17,7 +17,6 @@ import {
 
 // preload template.js
 import('./template.js');
-console.log('tpl loaded', performance.now());
 
 const LCP_BLOCKS = ['carousel', 'hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
@@ -86,7 +85,6 @@ function createResponsivePictures(main) {
   if (firstPic) {
     const links = getPicturePreloadLink(firstPic);
     links.forEach(link => document.head.appendChild(link));
-    firstPic.querySelector('img').addEventListener('load', () => console.log('first img loaded', performance.now()));
   }
   main.querySelectorAll('picture').forEach(picture => {
     picture.dataset.status = 'ready';
@@ -150,11 +148,8 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
-    console.log('decorating main', performance.now());
     decorateMain(main);
-    console.log('finish decorating main', performance.now());
     await waitForLCP(LCP_BLOCKS);
-    console.log('finish lcp', performance.now());
   }
 }
 
@@ -164,9 +159,7 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
-  console.log('loading blocks', performance.now());
   await loadBlocks(main);
-  console.log('blocks loaded', performance.now());
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
@@ -192,9 +185,7 @@ function loadDelayed() {
 
 async function loadPage() {
   await loadEager(document);
-  console.log('eager loaded', performance.now());
   await loadLazy(document);
-  console.log('lazy loaded', performance.now());
   loadDelayed();
 }
 
