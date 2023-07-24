@@ -15,9 +15,8 @@ import {
   createResponsivePicture,
 } from './lib-franklin.js';
 
-const t1 = performance.now();
 import './template.js';
-console.log('tpl loaded', performance.now() - t1);
+console.log('tpl loaded', performance.now());
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
@@ -147,11 +146,11 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
-    console.log('decorating main', performance.now() - t1);
+    console.log('decorating main', performance.now());
     decorateMain(main);
-    console.log('finish decorating main', performance.now() - t1);
+    console.log('finish decorating main', performance.now());
     await waitForLCP(LCP_BLOCKS);
-    console.log('finish lcp', performance.now() - t1);
+    console.log('finish lcp', performance.now());
   }
 }
 
@@ -161,9 +160,9 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
-  console.log('loading blocks', performance.now() - t1);
+  console.log('loading blocks', performance.now());
   await loadBlocks(main);
-  console.log('blocks loaded', performance.now() - t1);
+  console.log('blocks loaded', performance.now());
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
@@ -189,9 +188,9 @@ function loadDelayed() {
 
 async function loadPage() {
   await loadEager(document);
-  console.log('eager loaded', performance.now() - t1);
+  console.log('eager loaded', performance.now());
   await loadLazy(document);
-  console.log('lazy loaded', performance.now() - t1);
+  console.log('lazy loaded', performance.now());
   loadDelayed();
 }
 
