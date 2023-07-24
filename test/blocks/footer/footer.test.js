@@ -11,7 +11,7 @@ const { buildBlock, decorateBlock, loadBlock } = await import('../../../scripts/
 document.body.innerHTML = await readFile({ path: '../../scripts/body.html' });
 
 const sleep = async (time = 1000) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     setTimeout(() => {
       resolve(true);
     }, time);

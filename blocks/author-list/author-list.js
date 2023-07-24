@@ -1,11 +1,11 @@
-import { stringToHTML } from '../../scripts/template.js';
+import stringToHTML from '../../scripts/template.js';
 
 /**
  * @param {Element} block
  */
 export default function decorate(block) {
   const authors = [...block.querySelectorAll(':scope > div > div')];
-  authors.forEach(authorDiv => {
+  authors.forEach((authorDiv) => {
     authorDiv.append(
       stringToHTML(`
         <div class="social-share-group">

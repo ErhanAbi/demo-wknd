@@ -1,6 +1,5 @@
 import {
   sampleRUM,
-  buildBlock,
   loadHeader,
   loadFooter,
   decorateButtons,
@@ -33,8 +32,8 @@ function getPicturePreloadLink(picture) {
   const img = picture.querySelector('img');
   const webpSources = new Set(['image/webp', 'image/webply']);
   const links = sources
-    .filter(source => webpSources.has(source.type))
-    .map(source => {
+    .filter((source) => webpSources.has(source.type))
+    .map((source) => {
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';
@@ -58,13 +57,16 @@ function getPicturePreloadLink(picture) {
  * @param {Element} main
  */
 function createResponsivePictures(main) {
-  const blocks = [...main.querySelectorAll('.block')].filter(block =>
-    OMIT_RESPONSIVE_IMAGE_BLOCKS.reduce((acc, currentClass) => acc && !block.classList.contains(currentClass), true),
+  const blocks = [...main.querySelectorAll('.block')].filter((block) =>
+    OMIT_RESPONSIVE_IMAGE_BLOCKS.reduce(
+      (acc, currentClass) => acc && !block.classList.contains(currentClass),
+      true,
+    ),
   );
   const firstBlock = blocks[0];
 
   blocks.forEach((block, index) =>
-    block.querySelectorAll('img').forEach(img =>
+    block.querySelectorAll('img').forEach((img) =>
       img.closest('picture').replaceWith(
         createResponsivePicture({
           src: img.src,
@@ -80,9 +82,9 @@ function createResponsivePictures(main) {
   const firstPic = firstBlock.querySelector('picture');
   if (firstPic) {
     const links = getPicturePreloadLink(firstPic);
-    links.forEach(link => document.head.appendChild(link));
+    links.forEach((link) => document.head.appendChild(link));
   }
-  main.querySelectorAll('picture').forEach(picture => {
+  main.querySelectorAll('picture').forEach((picture) => {
     picture.dataset.status = 'ready';
   });
 }
@@ -132,7 +134,9 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
-  !window.isErrorPage && createResponsivePictures(main);
+  if (!window.isErrorPage) {
+    createResponsivePictures(main);
+  }
 }
 
 /**

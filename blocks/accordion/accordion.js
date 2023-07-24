@@ -1,5 +1,5 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
-import { stringToHTML } from '../../scripts/template.js';
+import stringToHTML from '../../scripts/template.js';
 
 /**
  * @param {Element} block
@@ -7,10 +7,10 @@ import { stringToHTML } from '../../scripts/template.js';
 function initEvents(block) {
   const buttons = [...block.querySelectorAll('button.accordion-btn')];
 
-  buttons.forEach(button =>
-    button.addEventListener('click', ev => {
+  buttons.forEach((button) =>
+    button.addEventListener('click', () => {
       const row = button.closest('div.accordion-row');
-      row.classList.toggle('accordion-row--open');
+      row.classList.toggle('accordion-row-isopen');
     }),
   );
 }
@@ -20,7 +20,7 @@ function initEvents(block) {
  */
 export default async function decorate(block) {
   const rows = [...block.querySelectorAll(':scope > div')];
-  rows.forEach(row => {
+  rows.forEach((row) => {
     const [accordionTitle, accordionContent] = [...row.querySelectorAll(':scope > div')];
     const btn = stringToHTML(`
         <button class="accordion-btn" type="button">

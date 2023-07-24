@@ -38,7 +38,7 @@ a.related-articles-article:hover::before {
   background-color: var(--text-color);
 }
 
-.related-articles-articleModified {
+.related-articles-articlemodified {
   margin-top: 1rem;
   color: #696969;
   font-size: 0.75rem;

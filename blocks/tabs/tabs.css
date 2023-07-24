@@ -6,7 +6,8 @@
   text-transform: uppercase;
   font-weight: 400;
 }
-.tab.tab--active {
+
+.tab.tab-isactive {
   background-color: var(--text-color);
   color: #fff;
 }

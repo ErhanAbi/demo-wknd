@@ -1,4 +1,4 @@
-import { stringToHTML } from '../../scripts/template.js';
+import stringToHTML from '../../scripts/template.js';
 
 /**
  *

@@ -12,6 +12,7 @@
   height: 84px;
   text-transform: uppercase;
 }
+
 .info > div::before {
   content: '';
   position: absolute;

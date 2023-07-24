@@ -17,20 +17,10 @@ header {
   pointer-events: none;
 }
 
-header.stuck .header {
-  --max-height: 32px;
-  max-height: calc(var(--max-height) + 2 * var(--padding-y));
-  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.26);
-}
-@media (min-width: 900px) {
-  header.stuck .header {
-    --max-height: 64px;
-  }
-}
-
 header .header,
 header .header .nav-wrapper {
   --padding-y: 1rem;
+
   box-sizing: border-box;
   padding: 1rem 0;
   height: 100%;
@@ -44,6 +34,19 @@ header .header {
   transition:
     max-height 100ms ease-in-out,
     box-shadow 50ms ease-in-out;
+}
+
+header.stuck .header {
+  --max-height: 32px;
+
+  max-height: calc(var(--max-height) + 2 * var(--padding-y));
+  box-shadow: 0 8px 20px 0 rgb(0 0 0 / 26%);
+}
+
+@media (min-width: 900px) {
+  header.stuck .header {
+    --max-height: 64px;
+  }
 }
 
 header nav {
@@ -186,6 +189,7 @@ header nav .nav-brand img {
   width: 80px;
   height: auto;
 }
+
 @media (min-width: 900px) {
   header nav .nav-brand img {
     width: 128px;
@@ -238,10 +242,12 @@ header nav .nav-sections ul a {
   text-transform: uppercase;
   gap: 0.5rem;
 }
+
 header nav .nav-sections ul a:hover {
   background-color: var(--brand-color);
   text-decoration: none;
 }
+
 header nav .nav-sections ul a:active {
   background-color: var(--brand-color);
 }

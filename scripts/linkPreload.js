@@ -1,8 +1,10 @@
-import { stringToHTML } from './template.js';
+import stringToHTML from './template.js';
 
 function prefetchDoc(anchor) {
   const link = stringToHTML(` <link rel="prefetch" as="document" href="${anchor.href}">`);
-  const existing = [...document.head.querySelectorAll('link[rel=prefetch]')].find(l => l.href === link.href);
+  const existing = [...document.head.querySelectorAll('link[rel=prefetch]')].find(
+    (l) => l.href === link.href,
+  );
 
   if (existing) {
     return;
@@ -11,12 +13,12 @@ function prefetchDoc(anchor) {
   document.head.append(link);
 }
 
-export function prerenderPages() {
+export default function prerenderPages() {
   const anchors = [...document.querySelectorAll('a')]
-    .filter(anchor => anchor.href.includes(document.location.origin))
-    .filter(anchor => anchor.href !== document.location.href);
+    .filter((anchor) => anchor.href.includes(document.location.origin))
+    .filter((anchor) => anchor.href !== document.location.href);
 
-  anchors.forEach(link => {
+  anchors.forEach((link) => {
     if (!link.href.includes(document.location.origin)) {
       return;
     }

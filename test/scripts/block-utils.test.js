@@ -28,21 +28,21 @@ describe('Utils methods', () => {
 
   it('Loads CSS', async () => {
     // loads a css file and calls callback
-    const load = await new Promise(resolve => {
-      blockUtils.loadCSS('/test/scripts/test.css', e => resolve(e));
+    const load = await new Promise((resolve) => {
+      blockUtils.loadCSS('/test/scripts/test.css', (e) => resolve(e));
     });
     expect(load).to.equal('load');
     expect(getComputedStyle(document.body).color).to.equal('rgb(255, 0, 0)');
 
     // does nothing if css already loaded
-    const noop = await new Promise(resolve => {
-      blockUtils.loadCSS('/test/scripts/test.css', e => resolve(e));
+    const noop = await new Promise((resolve) => {
+      blockUtils.loadCSS('/test/scripts/test.css', (e) => resolve(e));
     });
     expect(noop).to.equal('noop');
 
     // calls callback in case of error
-    const error = await new Promise(resolve => {
-      blockUtils.loadCSS('/test/scripts/nope.css', e => resolve(e));
+    const error = await new Promise((resolve) => {
+      blockUtils.loadCSS('/test/scripts/nope.css', (e) => resolve(e));
     });
     expect(error).to.equal('error');
   });
@@ -97,14 +97,14 @@ describe('Sections and blocks', () => {
 
   it('Loads blocks', async () => {
     await blockUtils.loadBlocks(document.querySelector('main'));
-    document.querySelectorAll('main .block').forEach($block => {
+    document.querySelectorAll('main .block').forEach(($block) => {
       expect($block.dataset.blockStatus).to.equal('loaded');
     });
   });
 
   it('Updates section status', async () => {
     blockUtils.updateSectionsStatus(document.querySelector('main'));
-    document.querySelectorAll('main .section').forEach($section => {
+    document.querySelectorAll('main .section').forEach(($section) => {
       expect($section.dataset.sectionStatus).to.equal('loaded');
     });
 
@@ -117,7 +117,9 @@ describe('Sections and blocks', () => {
   });
 
   it('Reads block config', async () => {
-    document.querySelector('main .section > div').innerHTML += await readFile({ path: './config.html' });
+    document.querySelector('main .section > div').innerHTML += await readFile({
+      path: './config.html',
+    });
     const cfg = blockUtils.readBlockConfig(document.querySelector('main .config'));
     expect(cfg).to.deep.include({
       'prop-0': 'Plain text',
