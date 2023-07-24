@@ -8,10 +8,6 @@ async function getArticlesMetadata(rawLinks) {
     .filter((link) => Boolean(link?.href))
     .map((link) => {
       let href = `${document.location.origin}${new URL(link.href).pathname}`;
-
-      if (href.includes('//')) {
-        href = href.replaceAll('//', '/');
-      }
       if (!href.endsWith('.plain.html')) {
         href += '.plain.html';
       }
@@ -30,6 +26,7 @@ async function getArticlesMetadata(rawLinks) {
       if (req.headers.get('last-modified')) {
         return new Date(req.headers.get('last-modified'));
       }
+
       if (req.headers.get('date')) {
         return new Date(req.headers.get('date'));
       }
@@ -78,12 +75,13 @@ export default async function decorate(block) {
     `<div class="related-articles-list">
         ${articlesMetadata
           .map(
-            (article) => `<a class="related-articles-article" href="${article.href}">
+            (article) =>
+              `<a class="related-articles-article" href="${article.href}">
                 <div class="related-articles-articleTitle">${article.title}</div>
                 ${
                   article.lastModified === null
-                    ? ''
-                    : `<div class="related-articles-articlemodified">
+                    ? ``
+                    : `<div class="related-articles-articleModified">
                       ${intl.format(article.lastModified)}
                     </div>`
                 }
