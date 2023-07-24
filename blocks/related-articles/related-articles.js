@@ -1,12 +1,12 @@
-import { stringToHTML } from '../../scripts/template.js';
+import stringToHTML from '../../scripts/template.js';
 
 /**
  * @param {HTMLAnchorElement[]} links
  */
 async function getArticlesMetadata(rawLinks) {
   const links = rawLinks
-    .filter(link => Boolean(link?.href))
-    .map(link => {
+    .filter((link) => Boolean(link?.href))
+    .map((link) => {
       let href = `${document.location.origin}${new URL(link.href).pathname}`;
       if (!href.endsWith('.plain.html')) {
         href += '.plain.html';
@@ -17,28 +17,22 @@ async function getArticlesMetadata(rawLinks) {
       };
     });
 
-  const dates = (
-    await Promise.all(
-      links.map(link =>
-        fetch(link.href, { method: 'HEAD' }).catch(err => {
-          // console.error(err);
-          return null;
-        }),
-      ),
-    )
-  ).map(req => {
-    if (req === null) {
-      return null;
-    }
+  const dates = (await Promise.all(links.map((link) => fetch(link.href, { method: 'HEAD' })))).map(
+    (req) => {
+      if (req === null) {
+        return null;
+      }
 
-    if (req.headers.get('last-modified')) {
-      return new Date(req.headers.get('last-modified'));
-    } else if (req.headers.get('date')) {
-      return new Date(req.headers.get('date'));
-    } else {
+      if (req.headers.get('last-modified')) {
+        return new Date(req.headers.get('last-modified'));
+      }
+
+      if (req.headers.get('date')) {
+        return new Date(req.headers.get('date'));
+      }
       return null;
-    }
-  });
+    },
+  );
 
   return links.map((link, idx) => ({
     href: link.href,
@@ -67,7 +61,7 @@ export default async function decorate(block) {
   const container = block.querySelector(':scope > div > div');
   const linkToRelatedArticles = container.querySelector('a');
   const articles = await fetchRelatedArticles(linkToRelatedArticles.href);
-  const articleLinks = articles.map(article =>
+  const articleLinks = articles.map((article) =>
     stringToHTML(`<a href="${article.url}" title="${article.title}">${article.title}</a>`),
   );
 
@@ -81,7 +75,7 @@ export default async function decorate(block) {
     `<div class="related-articles-list">
         ${articlesMetadata
           .map(
-            article =>
+            (article) =>
               `<a class="related-articles-article" href="${article.href}">
                 <div class="related-articles-articleTitle">${article.title}</div>
                 ${
