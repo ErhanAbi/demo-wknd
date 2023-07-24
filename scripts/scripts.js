@@ -17,8 +17,7 @@ import {
 // preload template.js
 import('./template.js');
 
-const LCP_BLOCKS = ['carousel', 'hero']; // add your LCP blocks to the list
-window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
+window.hlx.RUM_GENERATION = 'wknd-site'; // add your RUM generation information here
 
 const OMIT_RESPONSIVE_IMAGE_BLOCKS = [];
 
@@ -151,7 +150,7 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
-    await waitForLCP(LCP_BLOCKS);
+    await waitForLCP();
   }
 }
 

@@ -685,10 +685,11 @@ export function decorateButtons(element) {
  * Load LCP block and/or wait for LCP in default content.
  */
 export async function waitForLCP(lcpBlocks) {
-  const block = document.querySelector('.block');
-  const hasLCPBlock = block && lcpBlocks.includes(block.dataset.blockName);
-  if (hasLCPBlock) await loadBlock(block);
-
+  const firstSection = document.querySelector('main .section');
+  if(firstSection) {
+    const blocks = [...firstSection.querySelectorAll('.block')];
+    await Promise.allSettled(blocks.map(block => loadBlock(block)));
+  }
   document.body.style.display = null;
 }
 
