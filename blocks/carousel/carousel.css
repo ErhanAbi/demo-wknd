@@ -26,7 +26,8 @@
   display: none;
   position: relative;
 }
-.carousel-item.carousel-item--visible {
+
+.carousel-item.carousel-item-isvisible {
   display: block;
 }
 
@@ -49,18 +50,22 @@
 .carousel-content > * {
   margin: 0;
 }
+
 .carousel-content > :where(h1, h2, h3, h4, h5, h6) > a {
   color: var(--text-color);
 }
+
 .carousel-content > :where(h1, h2, h3, h4, h5, h6) > a:hover {
   text-decoration: none;
 }
+
 .carousel-content p.button-container {
   display: flex;
   justify-content: start;
   align-items: center;
   margin-top: 1rem;
 }
+
 .carousel-content a.button {
   font-size: var(--heading-font-size-s);
   margin: 0;
@@ -99,7 +104,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
   background-color: transparent;
   font-size: 2.25rem;
   width: auto;
@@ -114,7 +118,8 @@
   color: var(--text-color);
   opacity: 0.5;
 }
-.carousel-controls button.bullet-btn--active {
+
+.carousel-controls button.bullet-btn-isactive {
   opacity: 1;
 }
 
@@ -128,7 +133,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-
     margin: 0 auto;
     padding-bottom: 2rem;
     max-width: min(1200px, calc(100vw - 2 * var(--section-padding)));

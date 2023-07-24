@@ -4,28 +4,29 @@
   flex-flow: column nowrap;
   gap: 1rem;
 }
+
 .accordion-btn {
   margin: 0;
   border-bottom: 2px solid #ebebeb;
   padding: 0.8rem 1rem;
   width: 100%;
   background: none;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   font-weight: 600;
   font-size: var(--body-font-size-m);
 }
+
 .icon-remove {
   display: none;
 }
 
-.accordion-row--open .icon-remove {
+.accordion-row-isopen .icon-remove {
   display: block;
 }
-.accordion-row--open .icon-add {
+
+.accordion-row-isopen .icon-add {
   display: none;
 }
 
@@ -34,7 +35,8 @@
   font-size: var(--body-font-size-s);
   display: none;
 }
-.accordion-row--open .accordion-content {
+
+.accordion-row-isopen .accordion-content {
   display: block;
   padding: 0 1rem;
 }

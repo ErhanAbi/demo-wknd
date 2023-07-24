@@ -5,12 +5,12 @@ import { isElementInViewport } from '../../scripts/lib-franklin.js';
  * @param {Element} block
  */
 export default function decorate(block) {
-	const img = block.querySelector('img');
-	if (!img) {
-		return;
-	}
+  const img = block.querySelector('img');
+  if (!img) {
+    return;
+  }
 
-	if (isElementInViewport(img)) {
-		img.loading = 'eager';
-	}
+  if (isElementInViewport(img)) {
+    img.loading = 'eager';
+  }
 }

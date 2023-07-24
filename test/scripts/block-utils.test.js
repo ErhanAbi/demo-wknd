@@ -117,7 +117,9 @@ describe('Sections and blocks', () => {
   });
 
   it('Reads block config', async () => {
-    document.querySelector('main .section > div').innerHTML += await readFile({ path: './config.html' });
+    document.querySelector('main .section > div').innerHTML += await readFile({
+      path: './config.html',
+    });
     const cfg = blockUtils.readBlockConfig(document.querySelector('main .config'));
     expect(cfg).to.deep.include({
       'prop-0': 'Plain text',

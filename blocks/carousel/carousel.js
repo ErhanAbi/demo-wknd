@@ -1,4 +1,4 @@
-import { stringToHTML } from '../../scripts/template.js';
+import stringToHTML from '../../scripts/template.js';
 
 /**
  *
@@ -7,13 +7,15 @@ import { stringToHTML } from '../../scripts/template.js';
  */
 function showCarouselImage(block, index) {
   const items = [...block.querySelectorAll('.carousel-item')];
-  const visibleItemIdx = items.findIndex(item => item.classList.contains('carousel-item--visible'));
-  const show = idx => {
+  const visibleItemIdx = items.findIndex((item) =>
+    item.classList.contains('carousel-item-isvisible'),
+  );
+  const show = (idx) => {
     const bullets = [...block.querySelectorAll('button.bullet-btn')];
-    items.forEach(item => item.classList.remove('carousel-item--visible'));
-    bullets.forEach(button => button.classList.remove('bullet-btn--active'));
-    items[idx].classList.add('carousel-item--visible');
-    bullets[idx].classList.add('bullet-btn--active');
+    items.forEach((item) => item.classList.remove('carousel-item-isvisible'));
+    bullets.forEach((button) => button.classList.remove('bullet-btn-isactive'));
+    items[idx].classList.add('carousel-item-isvisible');
+    bullets[idx].classList.add('bullet-btn-isactive');
   };
 
   let itemIdxToShow = 0;
@@ -38,7 +40,7 @@ function initCarouselEvents(block) {
    *
    * @param {Event} evt
    */
-  const onButtonClick = evt => {
+  const onButtonClick = (evt) => {
     const { target: button } = evt;
     if (!button.dataset.nav) {
       return;
@@ -60,7 +62,7 @@ function createCarouselControls(count) {
               .fill()
               .map((_, idx) =>
                 idx === 0
-                  ? `<button class="bullet-btn bullet-btn--active" data-nav="${idx}">•</button>`
+                  ? `<button class="bullet-btn bullet-btn-isactive" data-nav="${idx}">•</button>`
                   : `<button class="bullet-btn" data-nav="${idx}">•</button>`,
               )
               .join('')}
@@ -80,7 +82,6 @@ function createCarouselControls(count) {
  */
 export default async function decorate(block) {
   const wrapper = block.parentElement;
-  const section = block.closest('div.section');
 
   if (block.classList.contains('fullbleed')) {
     wrapper.classList.add('fullbleed-wrapper');
@@ -90,7 +91,7 @@ export default async function decorate(block) {
   carouselItems.forEach((item, idx) => {
     const [picture, content] = item.querySelectorAll(':scope > div');
 
-    item.classList.add('carousel-item', idx === 0 ? 'carousel-item--visible' : 'carousel-item');
+    item.classList.add('carousel-item', idx === 0 ? 'carousel-item-isvisible' : 'carousel-item');
     picture?.classList.add('carousel-pic');
     content?.classList.add('carousel-content');
   });

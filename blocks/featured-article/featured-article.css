@@ -23,22 +23,27 @@
   justify-content: center;
   align-items: start;
 }
+
 .featured-article > div > div:first-of-type > * {
   margin: 0;
 }
+
+.featured-article > div > div:first-of-type > p {
+  font-size: var(--body-font-size-xs);
+}
+
 .featured-article > div > div:first-of-type p:first-of-type {
   font-size: var(--body-font-size-s);
   font-weight: 600;
 }
+
 .featured-article > div > div:first-of-type a:any-link {
   color: var(--text-color);
   text-decoration: none;
 }
+
 .featured-article > div > div:first-of-type > :where(h1, h2, h3, h4, h5, h6) {
   margin: 1.5rem 0;
-}
-.featured-article > div > div:first-of-type > p {
-  font-size: var(--body-font-size-xs);
 }
 
 .featured-article > div > div:first-of-type .button-container {
@@ -47,6 +52,7 @@
   align-items: center;
   margin-top: 1.5rem;
 }
+
 .featured-article > div > div:first-of-type .button-container a {
   margin: 0;
 }

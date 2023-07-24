@@ -3,16 +3,17 @@ import { createResponsivePicture } from '../../scripts/lib-franklin.js';
 export default function decorate(block) {
   /* change to ul, li */
   const ul = document.createElement('ul');
-  [...block.children].forEach(row => {
+  [...block.children].forEach((row) => {
     const li = document.createElement('li');
     li.innerHTML = row.innerHTML;
-    [...li.children].forEach(div => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
+    [...li.children].forEach((div) => {
+      if (div.children.length === 1 && div.querySelector('picture'))
+        div.className = 'cards-card-image';
       else div.className = 'cards-card-body';
     });
     ul.append(li);
   });
-  ul.querySelectorAll('img').forEach(img =>
+  ul.querySelectorAll('img').forEach((img) =>
     img.closest('picture').replaceWith(createResponsivePicture(img.src, img.alt, false)),
   );
   block.textContent = '';
