@@ -15,10 +15,11 @@ import {
   createResponsivePicture,
 } from './lib-franklin.js';
 
-import './template.js';
+// preload template.js
+import('./template.js');
 console.log('tpl loaded', performance.now());
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LCP_BLOCKS = ['carousel', 'hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 const OMIT_RESPONSIVE_IMAGE_BLOCKS = [];
@@ -63,14 +64,14 @@ function createResponsivePictures(main) {
   );
   const firstBlock = blocks[0];
 
-  blocks.forEach(block =>
+  blocks.forEach((block, index) =>
     block
       .querySelectorAll('img')
       .forEach(img =>
         img
           .closest('picture')
           .replaceWith(
-            createResponsivePicture({ src: img.src, alt: img.alt, eager: false, width: img.width, height: img.height }),
+            createResponsivePicture({ src: img.src, alt: img.alt, eager: index === 0, width: img.width, height: img.height }),
           ),
       ),
   );
@@ -79,10 +80,6 @@ function createResponsivePictures(main) {
   if (firstPic) {
     const links = getPicturePreloadLink(firstPic);
     links.forEach(link => document.head.appendChild(link));
-    const img = firstPic.querySelector('img');
-    if(img) {
-      img.loading = 'eager'
-    }
   }
   main.querySelectorAll('picture').forEach(picture => {
     picture.dataset.status = 'ready';
