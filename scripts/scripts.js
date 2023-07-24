@@ -63,6 +63,10 @@ function createResponsivePictures(main) {
       true,
     ),
   );
+  if (blocks.length === 0) {
+    return;
+  }
+
   const firstBlock = blocks[0];
 
   blocks.forEach((block, index) =>
@@ -134,9 +138,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
-  if (!window.isErrorPage) {
-    createResponsivePictures(main);
-  }
+  createResponsivePictures(main);
 }
 
 /**

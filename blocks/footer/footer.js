@@ -3,8 +3,11 @@ import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 /**
  * @param {Element} block
  */
-function decorateCopy(block) {
+function decorateCopyRight(block) {
   const copyBlock = block.querySelector('.copy');
+  if (!copyBlock) {
+    return;
+  }
   const [startYear, copyText] = [...copyBlock.querySelectorAll(':scope > div > div')];
   startYear.textContent = `© ${startYear.textContent}-${new Date().getFullYear()}, ${
     copyText.textContent
@@ -35,7 +38,7 @@ export default async function decorate(block) {
     footer.innerHTML = html;
 
     decorateIcons(footer);
-    decorateCopy(footer);
+    decorateCopyRight(footer);
     block.append(footer);
   }
 
