@@ -9,8 +9,8 @@ function listenHeaderStuck() {
   document.body.prepend(stuckRef);
 
   new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
+    entries => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           document.querySelector('header').classList.remove('stuck');
         } else {
@@ -60,7 +60,7 @@ function focusNavSection() {
  * @param {Boolean} expanded Whether the element should be expanded or collapsed
  */
 function toggleAllNavSections(sections, expanded = false) {
-  sections.querySelectorAll('.nav-sections > ul > li').forEach((section) => {
+  sections.querySelectorAll('.nav-sections > ul > li').forEach(section => {
     section.setAttribute('aria-expanded', expanded);
   });
 }
@@ -81,7 +81,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   // enable nav dropdown keyboard accessibility
   const navDrops = navSections.querySelectorAll('.nav-drop');
   if (isDesktop.matches) {
-    navDrops.forEach((drop) => {
+    navDrops.forEach(drop => {
       if (!drop.hasAttribute('tabindex')) {
         drop.setAttribute('role', 'button');
         drop.setAttribute('tabindex', 0);
@@ -89,7 +89,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
       }
     });
   } else {
-    navDrops.forEach((drop) => {
+    navDrops.forEach(drop => {
       drop.removeAttribute('role');
       drop.removeAttribute('tabindex');
       drop.removeEventListener('focus', focusNavSection);
@@ -132,7 +132,7 @@ export default async function decorate(block) {
 
     const navSections = nav.querySelector('.nav-sections');
     if (navSections) {
-      navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
+      navSections.querySelectorAll(':scope > ul > li').forEach(navSection => {
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
         navSection.addEventListener('click', () => {
           if (isDesktop.matches) {

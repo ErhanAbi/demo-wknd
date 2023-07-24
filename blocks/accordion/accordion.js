@@ -7,10 +7,12 @@ import { stringToHTML } from '../../scripts/template.js';
 function initEvents(block) {
   const buttons = [...block.querySelectorAll('button.accordion-btn')];
 
-  buttons.forEach((button) => button.addEventListener('click', (ev) => {
-    const row = button.closest('div.accordion-row');
-    row.classList.toggle('accordion-row--open');
-  }));
+  buttons.forEach(button =>
+    button.addEventListener('click', ev => {
+      const row = button.closest('div.accordion-row');
+      row.classList.toggle('accordion-row--open');
+    }),
+  );
 }
 
 /**
@@ -18,10 +20,8 @@ function initEvents(block) {
  */
 export default async function decorate(block) {
   const rows = [...block.querySelectorAll(':scope > div')];
-  rows.forEach((row) => {
-    const [accordionTitle, accordionContent] = [
-      ...row.querySelectorAll(':scope > div'),
-    ];
+  rows.forEach(row => {
+    const [accordionTitle, accordionContent] = [...row.querySelectorAll(':scope > div')];
     const btn = stringToHTML(`
         <button class="accordion-btn" type="button">
             <span class="accordion-btn-label">${accordionTitle.innerHTML}</span>

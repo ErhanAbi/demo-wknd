@@ -13,7 +13,7 @@
   text-transform: uppercase;
 }
 .breadcrumb:not(:last-child)::after {
-  content: "";
+  content: '';
   display: inline-block;
   border-top: 7px solid transparent;
   border-bottom: 7px solid transparent;

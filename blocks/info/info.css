@@ -13,7 +13,7 @@
   text-transform: uppercase;
 }
 .info > div::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;

@@ -7,11 +7,11 @@ import { stringToHTML } from '../../scripts/template.js';
  */
 function showCarouselImage(block, index) {
   const items = [...block.querySelectorAll('.carousel-item')];
-  const visibleItemIdx = items.findIndex((item) => item.classList.contains('carousel-item--visible'));
-  const show = (idx) => {
+  const visibleItemIdx = items.findIndex(item => item.classList.contains('carousel-item--visible'));
+  const show = idx => {
     const bullets = [...block.querySelectorAll('button.bullet-btn')];
-    items.forEach((item) => item.classList.remove('carousel-item--visible'));
-    bullets.forEach((button) => button.classList.remove('bullet-btn--active'));
+    items.forEach(item => item.classList.remove('carousel-item--visible'));
+    bullets.forEach(button => button.classList.remove('bullet-btn--active'));
     items[idx].classList.add('carousel-item--visible');
     bullets[idx].classList.add('bullet-btn--active');
   };
@@ -38,7 +38,7 @@ function initCarouselEvents(block) {
    *
    * @param {Event} evt
    */
-  const onButtonClick = (evt) => {
+  const onButtonClick = evt => {
     const { target: button } = evt;
     if (!button.dataset.nav) {
       return;
@@ -57,11 +57,13 @@ function createCarouselControls(count) {
     `<div class="carousel-controls">
         <div class="bullets">
             ${new Array(count)
-    .fill()
-    .map((_, idx) => (idx === 0
-      ? `<button class="bullet-btn bullet-btn--active" data-nav="${idx}">•</button>`
-      : `<button class="bullet-btn" data-nav="${idx}">•</button>`))
-    .join('')}
+              .fill()
+              .map((_, idx) =>
+                idx === 0
+                  ? `<button class="bullet-btn bullet-btn--active" data-nav="${idx}">•</button>`
+                  : `<button class="bullet-btn" data-nav="${idx}">•</button>`,
+              )
+              .join('')}
         </div>
         <div class="nav-buttons">
             <button class="nav-btn" data-nav="prev">←</button>

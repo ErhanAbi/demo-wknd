@@ -21,11 +21,7 @@ function formatBytes(bytes, decimals = 1) {
 async function getFileMetadata(filePath, fileNameMaxLen = 30) {
   const req = await fetch(filePath, { method: 'HEAD' });
   const { headers } = req;
-  let fileName = new URL(filePath).pathname
-    .split('/')
-    .pop()
-    .replaceAll('_', ' ')
-    .replaceAll('-', ' ');
+  let fileName = new URL(filePath).pathname.split('/').pop().replaceAll('_', ' ').replaceAll('-', ' ');
 
   if (fileName.length > fileNameMaxLen) {
     const letters = fileName.split('');
@@ -37,10 +33,7 @@ async function getFileMetadata(filePath, fileNameMaxLen = 30) {
   }
 
   return {
-    fileType:
-      typeof headers.get('content-type') === 'string'
-        ? headers.get('content-type')
-        : '',
+    fileType: typeof headers.get('content-type') === 'string' ? headers.get('content-type') : '',
     fileSize: formatBytes(headers.get('content-length')),
     fileName,
   };

@@ -18,12 +18,10 @@ function createAllArticlesSection() {
   const copiedNodeArticleList = copy.querySelector('.article-list');
 
   copiedNodeArticleList.replaceChildren();
-  document
-    .querySelectorAll('div.section[data-tab] .article-list.block > div')
-    .forEach((article) => {
-      const articleCopy = article.cloneNode(true);
-      copiedNodeArticleList.append(articleCopy);
-    });
+  document.querySelectorAll('div.section[data-tab] .article-list.block > div').forEach(article => {
+    const articleCopy = article.cloneNode(true);
+    copiedNodeArticleList.append(articleCopy);
+  });
   copy.dataset.tab = 'All';
   document.querySelector('main').insertBefore(copy, section);
 }

@@ -5,13 +5,9 @@ import { stringToHTML } from '../../scripts/template.js';
  * @param {Element} block
  */
 function decorateAuthorBlock(block) {
-  const [pictureRow, authorMetadataRow] = [
-    ...block.querySelectorAll(':scope > div'),
-  ];
+  const [pictureRow, authorMetadataRow] = [...block.querySelectorAll(':scope > div')];
   pictureRow.classList.add('author-avatar');
-  const [nameCol, detailsCol] = [
-    ...authorMetadataRow.querySelectorAll(':scope > div'),
-  ];
+  const [nameCol, detailsCol] = [...authorMetadataRow.querySelectorAll(':scope > div')];
   authorMetadataRow.classList.add('author-metadata');
   nameCol.classList.add('author-name');
   detailsCol.classList.add('author-details');
@@ -37,10 +33,7 @@ function addSocialShare(block) {
  * @param {Element} block
  */
 function addSeparator(block) {
-  block.parentElement.insertBefore(
-    stringToHTML('<hr class="separator">'),
-    block,
-  );
+  block.parentElement.insertBefore(stringToHTML('<hr class="separator">'), block);
 }
 
 /**
