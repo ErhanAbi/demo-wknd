@@ -338,15 +338,19 @@ hr.separator {
 }
 
 @media (min-width: 900px) {
+  /* stylelint-disable */
   .magazine main {
     max-width: 1200px;
     display: grid;
-    grid-template:
-      auto 280px auto 'hero hero'
-      'main side'
-      'author side';
+    grid-template-rows: auto;
+    grid-template-columns: auto 280px;
+    grid-template-areas: 
+    'hero hero'
+    'main side'
+    'author side';
     column-gap: 4rem;
   }
+  /* stylelint-enable */
 }
 
 .magazine .section.hero-container {
