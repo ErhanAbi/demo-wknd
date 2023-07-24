@@ -1,4 +1,4 @@
-import { stringToHTML } from "../../scripts/template.js";
+import { stringToHTML } from '../../scripts/template.js';
 
 /**
  *
@@ -6,15 +6,15 @@ import { stringToHTML } from "../../scripts/template.js";
  */
 function decorateAuthorBlock(block) {
   const [pictureRow, authorMetadataRow] = [
-    ...block.querySelectorAll(":scope > div"),
+    ...block.querySelectorAll(':scope > div'),
   ];
-  pictureRow.classList.add("author-avatar");
+  pictureRow.classList.add('author-avatar');
   const [nameCol, detailsCol] = [
-    ...authorMetadataRow.querySelectorAll(":scope > div"),
+    ...authorMetadataRow.querySelectorAll(':scope > div'),
   ];
-  authorMetadataRow.classList.add("author-metadata");
-  nameCol.classList.add("author-name");
-  detailsCol.classList.add("author-details");
+  authorMetadataRow.classList.add('author-metadata');
+  nameCol.classList.add('author-name');
+  detailsCol.classList.add('author-details');
 }
 
 /**
@@ -28,8 +28,8 @@ function addSocialShare(block) {
             <a href="#fb" class="social-share" aria-label="facebook">fb</a>
             <a href="#twitter" class="social-share" aria-label="twitter">tw</a>
             <a href="#insta" class="social-share" aria-label="instagram">insta</a>
-        </div>`
-    )
+        </div>`,
+    ),
   );
 }
 
@@ -38,8 +38,8 @@ function addSocialShare(block) {
  */
 function addSeparator(block) {
   block.parentElement.insertBefore(
-    stringToHTML(`<hr class="separator">`),
-    block
+    stringToHTML('<hr class="separator">'),
+    block,
   );
 }
 

@@ -5,12 +5,12 @@ export default async function decorate(block) {
   const articleList = [...block.querySelectorAll(':scope > div')];
   const isDisabled = block.classList.contains('locked');
 
-  articleList.forEach(articleBlock => {
+  articleList.forEach((articleBlock) => {
     const pic = articleBlock.querySelector('picture');
     const anchor = articleBlock.querySelector('a');
 
     if (isDisabled) {
-      articleBlock.querySelectorAll('a').forEach(a => a.removeAttribute('href'));
+      articleBlock.querySelectorAll('a').forEach((a) => a.removeAttribute('href'));
     }
 
     const dupe = anchor.cloneNode();

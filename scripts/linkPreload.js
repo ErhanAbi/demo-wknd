@@ -1,11 +1,11 @@
-import { stringToHTML } from "./template.js";
+import { stringToHTML } from './template.js';
 
 function prefetchDoc(anchor) {
   const link = stringToHTML(
-    ` <link rel="prefetch" as="document" href="${anchor.href}">`
+    ` <link rel="prefetch" as="document" href="${anchor.href}">`,
   );
   const existing = [
-    ...document.head.querySelectorAll("link[rel=prefetch]"),
+    ...document.head.querySelectorAll('link[rel=prefetch]'),
   ].find((l) => l.href === link.href);
 
   if (existing) {
@@ -16,7 +16,7 @@ function prefetchDoc(anchor) {
 }
 
 export function prerenderPages() {
-  const anchors = [...document.querySelectorAll("a")]
+  const anchors = [...document.querySelectorAll('a')]
     .filter((anchor) => anchor.href.includes(document.location.origin))
     .filter((anchor) => anchor.href !== document.location.href);
 
@@ -26,25 +26,25 @@ export function prerenderPages() {
     }
     let linkTimer = null;
     link.addEventListener(
-      "mouseover",
+      'mouseover',
       () => {
-        if (window.matchMedia("(max-width: 768px)").matches) {
+        if (window.matchMedia('(max-width: 768px)').matches) {
           return;
         }
         linkTimer = setTimeout(() => prefetchDoc(link), 80);
       },
-      { passive: true }
+      { passive: true },
     );
-    link.addEventListener("mouseout", () => {
+    link.addEventListener('mouseout', () => {
       clearTimeout(linkTimer);
     });
 
     link.addEventListener(
-      "touchstart",
+      'touchstart',
       () => {
         prefetchDoc(link);
       },
-      { passive: true }
+      { passive: true },
     );
   });
 }
