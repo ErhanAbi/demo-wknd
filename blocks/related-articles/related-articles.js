@@ -8,10 +8,6 @@ async function getArticlesMetadata(rawLinks) {
     .filter(link => Boolean(link?.href))
     .map(link => {
       let href = `${document.location.origin}${new URL(link.href).pathname}`;
-
-      if (href.includes('//')) {
-        href = href.replaceAll('//', '/');
-      }
       if (!href.endsWith('.plain.html')) {
         href += '.plain.html';
       }
