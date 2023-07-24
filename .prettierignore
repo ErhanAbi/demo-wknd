@@ -1,0 +1,9 @@
+**/.hlx/*
+**/coverage
+**/logs
+
+**/helix-importer-ui
+**/tools
+**/.DS_Store
+**/.github
+package-lock.json
