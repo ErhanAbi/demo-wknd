@@ -71,7 +71,13 @@ function createResponsivePictures(main) {
         img
           .closest('picture')
           .replaceWith(
-            createResponsivePicture({ src: img.src, alt: img.alt, eager: index === 0, width: img.width, height: img.height }),
+            createResponsivePicture({
+              src: img.src,
+              alt: img.alt,
+              eager: index === 0,
+              width: img.width,
+              height: img.height,
+            }),
           ),
       ),
   );
@@ -80,6 +86,7 @@ function createResponsivePictures(main) {
   if (firstPic) {
     const links = getPicturePreloadLink(firstPic);
     links.forEach(link => document.head.appendChild(link));
+    firstPic.querySelector('img').addEventListener('load', () => console.log('first img loaded', performance.now()));
   }
   main.querySelectorAll('picture').forEach(picture => {
     picture.dataset.status = 'ready';
