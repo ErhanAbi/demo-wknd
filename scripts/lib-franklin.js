@@ -645,16 +645,6 @@ export async function waitForLCP(lcpBlocks) {
   if (hasLCPBlock) await loadBlock(block);
 
   document.body.style.display = null;
-  // const lcpCandidate = document.querySelector('main img');
-  // await new Promise((resolve) => {
-  //   if (lcpCandidate && !lcpCandidate.complete) {
-  //     lcpCandidate.setAttribute('loading', 'eager');
-  //     lcpCandidate.addEventListener('load', resolve);
-  //     lcpCandidate.addEventListener('error', resolve);
-  //   } else {
-  //     resolve();
-  //   }
-  // });
 }
 
 /**
