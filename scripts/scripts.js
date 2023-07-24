@@ -136,7 +136,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
-  createResponsivePictures(main);
+  !window.isErrorPage && createResponsivePictures(main);
 }
 
 /**
