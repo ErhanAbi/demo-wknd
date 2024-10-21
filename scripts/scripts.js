@@ -1,17 +1,17 @@
 import {
-  sampleRUM,
-  loadHeader,
-  loadFooter,
+  createResponsivePicture,
+  decorateBlocks,
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateBlocks,
   decorateTemplateAndTheme,
-  waitForLCP,
+  getMetadata,
   loadBlocks,
   loadCSS,
-  getMetadata,
-  createResponsivePicture,
+  loadFooter,
+  loadHeader,
+  sampleRUM,
+  waitForLCP,
 } from './lib-franklin.js';
 
 // preload template.js
@@ -165,8 +165,10 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
+  await Promise.allSettled([
+    loadHeader(doc.querySelector('header')),
+    loadFooter(doc.querySelector('footer')),
+  ]);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
@@ -179,7 +181,7 @@ async function loadLazy(doc) {
  * Loads everything that happens a lot later,
  * without impacting the user experience.
  */
-function loadDelayed() {  
+function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 1000);
   // load anything that can be postponed to the latest here
@@ -189,7 +191,6 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
-  console.log('all done');
 }
 
 loadPage();
