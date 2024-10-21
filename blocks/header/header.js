@@ -1,5 +1,5 @@
 import { decorateIcons, getMetadata } from '../../scripts/lib-franklin.js';
-import { loadComponents } from '../../scripts/spire-ui.js';
+import loadComponents from '../../scripts/spire-ui.js';
 import stringToHTML from '../../scripts/template.js';
 
 // media query match that indicates mobile/tablet width
@@ -117,13 +117,13 @@ async function decorateSearchBox(block) {
 
   component.setProps(() => ({
     colorScheme: 'light',
-    submittedQuery: new URL(location).searchParams.get('q'),
+    submittedQuery: new URL(document.location).searchParams.get('q'),
     onSubmit: (query) => {
       const searchURL = new URL('/search', document.location.origin);
       searchURL.searchParams.set('q', query);
 
-      if (location.pathname === '/search') {
-        history.replaceState(null, null, searchURL);
+      if (document.location.pathname === '/search') {
+        window.history.replaceState(null, null, searchURL);
       } else {
         window.location = searchURL;
       }

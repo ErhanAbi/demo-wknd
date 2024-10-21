@@ -16,7 +16,7 @@ const locations = {
 /**
  * loads web components from spire-ui
  */
-export async function loadComponents() {
+export default async function loadComponents() {
   const webComponentsPath =
     document.location.hostname === 'localhost'
       ? locations.local()
