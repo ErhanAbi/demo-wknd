@@ -8,5 +8,7 @@ export default async function decorate(block) {
 
   const aiResp = document.createElement('spire-ai-response');
 
+  aiResp.setProps(() => ({ queryIndex: 'wkndcf' }));
+
   block.appendChild(aiResp);
 }
