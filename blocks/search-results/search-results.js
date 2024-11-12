@@ -1,10 +1,10 @@
-import loadComponents from '../../scripts/spire-ui.js';
+// import loadComponents from '../../scripts/spire-ui.js';
 
 /**
  * @param {Element} block
  */
 export default async function decorate(block) {
-  await loadComponents();
+//   await loadComponents();
 
   //   const searchResults = document.createElement('spire-search-results');
 
