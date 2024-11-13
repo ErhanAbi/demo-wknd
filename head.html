@@ -12,3 +12,44 @@
 <script src="/scripts/lib-franklin.js" type="module"></script>
 <script src="/scripts/scripts.js" type="module"></script>
 <script src="/scripts/spire-ui.js" type="module"></script>
+<!--<script type="module">-->
+<!--  /**-->
+<!--   * loads web components from spire-ui-->
+<!--   */-->
+<!--  async function loadComponents() {-->
+<!--    const assetPath = (asset, isImmutableAsset = true) => {-->
+<!--      const originURL = new URL('https://experience-qa.adobe.com/');-->
+<!--      return new URL(-->
+<!--        asset,-->
+<!--        `${originURL.origin}/solutions/software-distribution-spire-ui/${-->
+<!--          isImmutableAsset ? 'assets' : 'static-assets'-->
+<!--        }/platforms/web/`,-->
+<!--      ).href;-->
+<!--    };-->
+<!--    const manifest = await (await window.fetch(assetPath('manifest.json', false))).json();-->
+<!--    const { loader } = await import(/* webpackIgnore: true */ assetPath(manifest['index.mjs']));-->
+<!--    await loader.setNamespace('spire').loadStyles().registerComponents().load();-->
+<!--    return loader;-->
+<!--  }-->
+
+<!--  async function loadSpireAIComponent() {-->
+<!--    await loadComponents();-->
+
+<!--    const container = document.createElement('div');-->
+<!--    container.style.margin = '4rem 4rem 8rem 4rem';-->
+
+<!--    const searchBox = document.createElement('spire-search-box');-->
+<!--    const aiResp = document.createElement('spire-ai-response');-->
+
+<!--    // aiResp.setProp('queryIndex', 'wkndcf');-->
+
+<!--    searchBox.setProp('colorScheme', 'light');-->
+<!--    aiResp.setProps(() => ({ queryIndex: 'wkndcf', colorScheme: 'light' }));-->
+
+<!--    container.appendChild(searchBox);-->
+<!--    container.appendChild(aiResp);-->
+<!--    document.body.appendChild(container);-->
+<!--  }-->
+
+<!--  await loadSpireAIComponent();-->
+<!--</script>-->
