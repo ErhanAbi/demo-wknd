@@ -109,10 +109,10 @@ h1 {
 }
 
 h2 {
-  font-size: var(--heading-font-size-xl);
+  /*font-size: var(--heading-font-size-xl);*/
 }
 
-h3 {
+h2, h3 {
   font-size: var(--heading-font-size-l);
 }
 
