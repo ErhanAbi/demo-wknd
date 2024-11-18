@@ -107,35 +107,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
- * creates search box from spire-ui
- * @param {Element} block
- */
-async function decorateSearchBox(block) {
-  await loadComponents();
-
-  const component = document.createElement('spire-search-box');
-
-  component.setProps(() => ({
-    colorScheme: 'light',
-    submittedQuery: new URL(document.location).searchParams.get('q'),
-    onSubmit: (query) => {
-      const searchURL = new URL('/search', document.location.origin);
-      searchURL.searchParams.set('q', query);
-
-      if (document.location.pathname === '/search') {
-        window.history.replaceState(null, null, searchURL);
-      } else {
-        window.location = searchURL;
-      }
-    },
-  }));
-
-  const container = block.querySelector('div.nav-tools');
-  container.innerHTML = '';
-  container.appendChild(component);
-}
-
-/**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -195,7 +166,5 @@ export default async function decorate(block) {
     block.append(navWrapper);
 
     listenHeaderStuck();
-
-    await decorateSearchBox(block);
   }
 }
