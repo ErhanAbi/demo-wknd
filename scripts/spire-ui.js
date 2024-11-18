@@ -6,7 +6,7 @@ const locations = {
       const originURL = new URL(origin);
       return new URL(
         asset,
-        `${originURL.origin}/solutions/software-distribution-spire-ui/${
+        `${originURL.origin}/solutions/experience-platform-asgd-content-ai-web-components/${
           isImmutableAsset ? 'assets' : 'static-assets'
         }/platforms/web/`,
       ).href;
@@ -20,7 +20,7 @@ export default async function loadComponents() {
   const webComponentsPath =
     document.location.hostname === 'localhost'
       ? locations.local()
-      : locations.remote('https://experience-stage.adobe.com/');
+      : locations.remote('https://experience-qa.adobe.com/');
 
   const manifest = await (await fetch(webComponentsPath('manifest.json', false))).json();
 
