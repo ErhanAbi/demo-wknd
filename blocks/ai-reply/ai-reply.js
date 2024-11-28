@@ -17,7 +17,7 @@ export default async function decorate(block) {
     }
   };
 
-  const aiResp = document.createElement('demo-ai-response');
+  const aiResp = document.createElement('spire-ai-response');
   aiResp.setProps(() => ({
     queryIndex: 'inside-2',
     submittedQuery: new URL(document.location).searchParams.get('q'),
