@@ -20,7 +20,7 @@ export default async function loadComponents() {
   const webComponentsPath =
     document.location.hostname === 'localhost'
       ? locations.local()
-      : locations.remote('https://experience-qa.adobe.com/');
+      : locations.remote('https://experience.adobe.com/');
 
   const manifest = await (await fetch(webComponentsPath('manifest.json', false))).json();
 
