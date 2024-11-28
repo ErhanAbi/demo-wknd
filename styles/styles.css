@@ -42,7 +42,60 @@
   --nav-height: 96px;
   --nav-margin: 1rem;
   --section-padding: 16px;
+
+  /*!*container*!*/
+
+  /*--contentAI-background-color: var(--background-color); !*used for main container*!*/
+  /*--contentAI-line-height: 1.8;*/
+
+  /*!*text*!*/
+
+  /*--contentAI-micro-text-field-font-size: var(--heading-font-size-s); !*dialog (caption) text*!*/
+  /*--contentAI-text-font-size: var(--heading-font-size-m); !*container, button questions, markdown p, searchbox input *!*/
+  /*--contentAI-heading-font-size: var(--heading-font-size-l); !*question mardkown h2,3 dialog heading, *!*/
+  /*--contentAI-text-font-family: var(--body-font-family); !*container, input*!*/
+  /*--contentAI-text-color: var(--text-color); !*dialog, conatiner, searh box, popover*!*/
+
+  /*--contentAI-micro-text-field-font-weight: 400; !*dialog (caption) text*!*/
+  /*--contentAI-text-font-weight: 600; !*button*!*/
+  /*--contentAI-heading-font-weight: 800; !*question, dialog heading *!*/
+
+  /*!*input*!*/
+
+  /*--contentAI-input-border-color: var(--text-color);*/
+  /*--contentAI-input-border-color-hover: var(--brand-color);*/
+  /*--contentAI-input-border-color-focus: var(--brand-color);*/
+
+  /*!*buttons*!*/
+
+  /*--contentAI-button-border-width: 0px;*/
+  /*--contentAI-button-border-radius: 0px;*/
+  /*--contentAI-button-background-color: var(--brand-color);*/
+  /*--contentAI-background-color-hover: var(--link-hover-color);*/ /*also used for link card hover*/
+  /*--contentAI-button-background-color-active: var(--link-hover-color);*/
+
+  /*--contentAI-button-border-color: var(--brand-color);*/
+  /*--contentAI-button-border-color-secondary: var(--overlay-background-color);*/
+
+  /*--contentAI-text-color-variant: var(--text-color);*/
+  /*--contentAI-button-border-color-variant: var(--brand-color);*/
+  /*--contentAI-button-background-color-variant: var(--brand-color);*/
+  /*--contentAI-button-background-color-variant-hover: var(--brand-color);*/
+  /*--contentAI-button-background-color-variant-focus: var(--brand-color);*/
+
+  /*!*dialog*!*/
+
+  /*--contentAI-dialog-background-color: #fff;*/
+  /*--contentAI-dialog-border-radius: 4px;*/
+  /*--contentAI-dialog-border-color: var(--text-color);*/
+  /*--contentAI-dialog-source-subtitle-font-size: 16px;*/
+  /*--contentAI-dialog-source-title-font-size: 20px;*/
 }
+
+/*.content-ai-dialog .content-ai-button.cancel {*/
+/*  border-color: var(--brand-color);*/
+/*}*/
+
 
 @media (min-width: 600px) {
   :root {
@@ -138,12 +191,12 @@ blockquote {
   margin-bottom: 1em;
 }
 
-hr {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-  border: 0;
-  border-bottom: 1px solid var(--overlay-background-color);
-}
+/*hr {*/
+/*  margin-top: 1.5em;*/
+/*  margin-bottom: 1.5em;*/
+/*  border: 0;*/
+/*  border-bottom: 1px solid var(--overlay-background-color);*/
+/*}*/
 
 strong {
   font-weight: 600;
@@ -443,3 +496,5 @@ hr.separator {
     margin-top: 1.2em;
   }
 }
+
+
