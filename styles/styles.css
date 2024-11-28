@@ -191,12 +191,12 @@ blockquote {
   margin-bottom: 1em;
 }
 
-/*hr {*/
-/*  margin-top: 1.5em;*/
-/*  margin-bottom: 1.5em;*/
-/*  border: 0;*/
-/*  border-bottom: 1px solid var(--overlay-background-color);*/
-/*}*/
+hr {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  border: 0;
+  border-bottom: 1px solid var(--overlay-background-color);
+}
 
 strong {
   font-weight: 600;
