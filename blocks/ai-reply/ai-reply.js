@@ -8,7 +8,7 @@ export default async function decorate(block) {
 
   const aiResp = document.createElement('spire-ai-response');
 
-  aiResp.setProps(() => ({ queryIndex: 'inside', colorScheme: 'light' }));
+  aiResp.setProps(() => ({ queryIndex: 'leviton_dev', colorScheme: 'light' }));
 
   block.appendChild(aiResp);
 }
