@@ -1,14 +1,17 @@
-import loadComponents from '../../scripts/spire-ui.js';
+import { loadContentAI } from 'https://experience-qa.adobe.com/solutions/experience-platform-asgd-content-ai-web-components/static-assets/platforms/web/init.mjs';
+import { handleSubmit } from '../../scripts/spire-ui.js';
 
 /**
  * @param {Element} block
  */
 export default async function decorate(block) {
-  await loadComponents();
+  await loadContentAI({ namespace: 'spire', baseUrl: 'https://experience-qa.adobe.com' });
 
   const aiResp = document.createElement('spire-ai-response');
-
-  aiResp.setProps(() => ({ queryIndex: 'inside', colorScheme: 'light' }));
+  aiResp.setProps(() => ({
+    queryIndex: 'inside-2',
+    onSubmit: handleSubmit,
+  }));
 
   block.appendChild(aiResp);
 }

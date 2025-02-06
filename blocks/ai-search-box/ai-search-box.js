@@ -1,26 +1,17 @@
-import loadComponents from '../../scripts/spire-ui.js';
+import { loadContentAI } from 'https://experience-qa.adobe.com/solutions/experience-platform-asgd-content-ai-web-components/static-assets/platforms/web/init.mjs';
+import { handleSubmit } from '../../scripts/spire-ui.js';
 
 /**
  * @param {Element} block
  */
 export default async function decorate(block) {
-  await loadComponents();
+  await loadContentAI({ namespace: 'spire', baseUrl: 'https://experience-qa.adobe.com' });
 
   const aiSearchBox = document.createElement('spire-search-box');
 
   aiSearchBox.setProps(() => ({
-    colorScheme: 'light',
     submittedQuery: new URL(document.location).searchParams.get('q'),
-    onSubmit: (query) => {
-      const searchURL = new URL('/search', document.location.origin);
-      searchURL.searchParams.set('q', query);
-
-      if (document.location.pathname === '/search') {
-        window.history.replaceState(null, null, searchURL);
-      } else {
-        window.location = searchURL;
-      }
-    },
+    onSubmit: handleSubmit,
   }));
 
   block.appendChild(aiSearchBox);

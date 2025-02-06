@@ -20,7 +20,7 @@ export default async function loadComponents() {
   const webComponentsPath =
     document.location.hostname === 'localhost'
       ? locations.local()
-      : locations.remote('https://experience.adobe.com/');
+      : locations.remote('https://experience-qa.adobe.com/');
 
   const manifest = await (await fetch(webComponentsPath('manifest.json', false))).json();
 
@@ -29,3 +29,14 @@ export default async function loadComponents() {
 
   return loader;
 }
+
+export const handleSubmit = (query) => {
+  const searchURL = new URL('/search', document.location.origin);
+  searchURL.searchParams.set('q', query);
+
+  if (document.location.pathname === '/search') {
+    window.history.replaceState(null, null, searchURL);
+  } else {
+    window.location = searchURL;
+  }
+};
