@@ -1,4 +1,4 @@
-import { loadContentAI } from 'https://experience-qa.adobe.com/solutions/experience-platform-asgd-content-ai-web-components/static-assets/platforms/web/init.mjs';
+import { loadContentAI } from 'https://experience-stage.adobe.com/solutions/experience-platform-asgd-content-ai-web-components/static-assets/platforms/web/init.mjs';
 import { handleSubmit } from '../../scripts/spire-ui.js';
 
 /**
