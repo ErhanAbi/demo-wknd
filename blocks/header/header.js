@@ -1,5 +1,5 @@
 import { decorateIcons, getMetadata } from '../../scripts/lib-franklin.js';
-import loadComponents from '../../scripts/spire-ui.js';
+// import loadComponents from '../../scripts/spire-ui.js';
 import stringToHTML from '../../scripts/template.js';
 
 // media query match that indicates mobile/tablet width
@@ -196,6 +196,6 @@ export default async function decorate(block) {
 
     listenHeaderStuck();
 
-    await decorateSearchBox(block);
+    // await decorateSearchBox(block);
   }
 }

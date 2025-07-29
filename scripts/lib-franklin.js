@@ -686,9 +686,9 @@ export function decorateButtons(element) {
  */
 export async function waitForLCP() {
   const firstSection = document.querySelector('main .section');
-  if(firstSection) {
+  if (firstSection) {
     const blocks = [...firstSection.querySelectorAll('.block')];
-    await Promise.allSettled(blocks.map(block => loadBlock(block)));
+    await Promise.allSettled(blocks.map((block) => loadBlock(block)));
   }
   document.body.style.display = null;
 }
